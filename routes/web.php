@@ -28,7 +28,7 @@ use App\Http\Controllers\ControladorCaixasDepartamento;
 
 //Rotas para Login
 Route::prefix('/')->group(function () {
-    Route::get('/', [ControladorLogin::class, 'index'])->name('index');
+    Route::GET('/', [ControladorLogin::class, 'index'])->name('index');
     Route::GET('/45b38db', [ControladorLogin::class, 'leave'])->name('leave');
     Route::POST('/', [ControladorLogin::class, 'create'])->name('valida-login');
     Route::GET('/senha', [ControladorLogin::class, 'paginaAlteraSenha'])->name('paginaAlterarSenha');
