@@ -29,11 +29,11 @@ Route::PUT('/senha', [ControladorLogin::class, 'alterarSenha'])->name('alterar_s
 
 //Rotas Dashboard
 Route::GET('/manual', [ControladorDashboard::class, 'manual'])->name('manual');
-Route::GET('/dash', 'ControladorDashboard@index')->name('dashboard');
-Route::GET('/pdf/{name_pdf}', 'ControladorDashboard@showPdf')->name('pdf');
-Route::GET('/documentos_edit/{id}', 'ControladorDashboard@edit')->name('edit');
-Route::PUT('/documentos_update/{id}', 'ControladorDashboard@update')->name('update');
-Route::GET('/delete/{id}', 'ControladorDashboard@destroy')->name('delete_documento');
+Route::GET('/dash', [ControladorDashboard::class, 'index'])->name('dashboard');
+Route::GET('/pdf/{name_pdf}', [ControladorDashboard::class, 'showPdf'])->name('pdf');
+Route::GET('/documentos_edit/{id}', [ControladorDashboard::class, 'edit'])->name('edit');
+Route::PUT('/documentos_update/{id}', [ControladorDashboard::class, 'update'])->name('update');
+Route::GET('/delete/{id}', [ControladorDashboard::class, 'destroy'])->name('delete_documento');
 
 //Rotas Documentos
 Route::GET('/documento', 'ControladorDocumento@create')->name('documentos_create');
