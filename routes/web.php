@@ -14,21 +14,21 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ControladorLogin;
+use App\Http\Controllers\ControladorDashboard;
+
 
 
 //Rotas para Login
-Route::GET('/', 'ControladorLogin@index')->name('index');
-
-Route::GET('/manual', 'ControladorDashboard@manual')->name('manual');
-
-Route::GET('/45b38db', 'ControladorLogin@leave')->name('leave');
-Route::POST('/', 'ControladorLogin@create')->name('valida-login');
-
-Route::GET('/senha', 'ControladorLogin@paginaAlteraSenha')->name('paginaAlterarSenha');
-Route::PUT('/senha', 'ControladorLogin@alterarSenha')->name('alterar_senha');
+Route::get('/', [ControladorLogin::class, 'index'])->name('index');
+Route::GET('/45b38db', [ControladorLogin::class, 'leave'])->name('leave');
+Route::POST('/', [ControladorLogin::class, 'create'])->name('valida-login');
+Route::GET('/senha', [ControladorLogin::class, 'paginaAlteraSenha'])->name('paginaAlterarSenha');
+Route::PUT('/senha', [ControladorLogin::class, 'alterarSenha'])->name('alterar_senha');
 
 
 //Rotas Dashboard
+Route::GET('/manual', [ControladorDashboard::class, 'manual'])->name('manual');
 Route::GET('/dash', 'ControladorDashboard@index')->name('dashboard');
 Route::GET('/pdf/{name_pdf}', 'ControladorDashboard@showPdf')->name('pdf');
 Route::GET('/documentos_edit/{id}', 'ControladorDashboard@edit')->name('edit');

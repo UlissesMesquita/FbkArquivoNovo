@@ -18,7 +18,7 @@ class ControladorLogin extends Controller
     //Envia novo usuário para tela de login
 
         session()->put('autenticado', 0);
-       return view('login/login');
+        return view('login.login');
     }
 
     /**
