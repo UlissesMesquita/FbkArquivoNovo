@@ -29,6 +29,7 @@ class CreateCaixaDepartamentosTable extends Migration
 
            
         });
+        
         DB::statement('ALTER TABLE caixa__departamentos MODIFY id_caixa INTEGER NOT NULL AUTO_INCREMENT');
     }
 

@@ -10,17 +10,18 @@ services:
       - db
       
   db:
-    image: postgres
+    image: mariadb
     restart: always
     container_name: fbk-db
     ports:
-      - "5435:5432"
+      - "3306:3306"
     environment:
-      POSTGRES_USER: fbk.user
-      POSTGRES_PASSWORD: fbk.user123
-      POSTGRES_DB: fbk.arquivo.dbdata
+      MYSQL_ROOT_PASSWORD: teste123
+      MYSQL_USER: fbk.user
+      MYSQL_PASSWORD: fbk.user123
+      MYSQL_DATABASE: fbk.arquivo.dbdata
     volumes: 
-    - "./.docker/dbdata:/var/lib/postgresql/data"
+    - "./.docker/dbdata:/var/lib/mysql"
 
   nginx:
     build: ./.docker/nginx
