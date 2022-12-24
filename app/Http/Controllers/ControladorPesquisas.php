@@ -57,91 +57,91 @@ class ControladorPesquisas extends Controller
             $caixa_departamento_Financeiro = DB::table('caixa__departamentos')
              ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
              ->select('cad_departamento', 'ordem')
-             ->where('cad_departamento', '=', 'ADM-FINANCEIRO')->where('status', '=', 'Aberta')
+             ->where('cad_departamento', '=', 'ADM-FINANCEIRO')
              ->get();
 
             
             $caixa_departamento_Diretoria = DB::table('caixa__departamentos')
             ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
             ->select('cad_departamento', 'ordem')
-            ->where('cad_departamento', '=', 'DIRETORIA')->where('status', '=', 'Aberta')
+            ->where('cad_departamento', '=', 'DIRETORIA')
             ->get();
 
             
             $caixa_departamento_Producao = DB::table('caixa__departamentos')
             ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
             ->select('cad_departamento', 'ordem')
-            ->where('cad_departamento', '=', 'PRODUÇÃO')->where('status', '=', 'Aberta')
+            ->where('cad_departamento', '=', 'PRODUÇÃO')
             ->get();
 
             
             $caixa_departamento_Pos_Producao = DB::table('caixa__departamentos')
             ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
             ->select('cad_departamento', 'ordem')
-            ->where('cad_departamento', '=', 'PÓS-PRODUÇÃO')->where('status', '=', 'Aberta')
+            ->where('cad_departamento', '=', 'PÓS-PRODUÇÃO')
             ->get();
 
             
             $caixa_departamento_Comercial = DB::table('caixa__departamentos')
             ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
             ->select('cad_departamento', 'ordem')
-            ->where('cad_departamento', '=', 'COMERCIAL')->where('status', '=', 'Aberta')
+            ->where('cad_departamento', '=', 'COMERCIAL')
             ->get();
 
             
             $caixa_departamento_Tecnica = DB::table('caixa__departamentos')
             ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
             ->select('cad_departamento', 'ordem')
-            ->where('cad_departamento', '=', 'TÉCNICA')->where('status', '=', 'Aberta')
+            ->where('cad_departamento', '=', 'TÉCNICA')
             ->get();
 
             
             $caixa_departamento_Copiagem = DB::table('caixa__departamentos')
             ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
             ->select('cad_departamento', 'ordem')
-            ->where('cad_departamento', '=', 'COPIAGEM')->where('status', '=', 'Aberta')
+            ->where('cad_departamento', '=', 'COPIAGEM')
             ->get();
 
             
             $caixa_departamento_Edicao = DB::table('caixa__departamentos')
             ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
             ->select('cad_departamento', 'ordem')
-            ->where('cad_departamento', '=', 'EDIÇÃO')->where('status', '=', 'Aberta')
+            ->where('cad_departamento', '=', 'EDIÇÃO')
             ->get();
 
             
             $caixa_departamento_Mam = DB::table('caixa__departamentos')
             ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
             ->select('cad_departamento', 'ordem')
-            ->where('cad_departamento', '=', 'MAM')->where('status', '=', 'Aberta')
+            ->where('cad_departamento', '=', 'MAM')
             ->get();
 
             
             $caixa_departamento_Nucleo_Conteudo = DB::table('caixa__departamentos')
             ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
             ->select('cad_departamento', 'ordem')
-            ->where('cad_departamento', '=', 'NÚCLEO-CONTEÚDO')->where('status', '=', 'Aberta')
+            ->where('cad_departamento', '=', 'NÚCLEO-CONTEÚDO')
             ->get();
  
             
             $caixa_departamento_Campanha_Politica = DB::table('caixa__departamentos')
             ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
             ->select('cad_departamento', 'ordem')
-            ->where('cad_departamento', '=', 'CAMPANHA-POLÍTICA')->where('status', '=', 'Aberta')
+            ->where('cad_departamento', '=', 'CAMPANHA-POLÍTICA')
             ->get();
             
              
              $caixa_departamento_Projetos_Especiais = DB::table('caixa__departamentos')
              ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
              ->select('cad_departamento', 'ordem')
-             ->where('cad_departamento', '=', 'PROJETOS-ESPECIAIS')->where('status', '=', 'Aberta')
+             ->where('cad_departamento', '=', 'PROJETOS-ESPECIAIS')
              ->get();
             
             
             $caixa_departamento_Outros = DB::table('caixa__departamentos')
             ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
             ->select('cad_departamento', 'ordem')
-            ->where('cad_departamento', '=', 'OUTROS')->where('status', '=', 'Aberta')
+            ->where('cad_departamento', '=', 'OUTROS')
             ->get();    
 
 
@@ -278,91 +278,91 @@ class ControladorPesquisas extends Controller
                 $caixa_departamento_Financeiro = DB::table('caixa__departamentos')
                 ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                 ->select('cad_departamento', 'ordem')
-                ->where('cad_departamento', '=', 'ADM-FINANCEIRO')->where('status', '=', 'Aberta')
+                ->where('cad_departamento', '=', 'ADM-FINANCEIRO')
                 ->get();
    
                
                $caixa_departamento_Diretoria = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
-               ->where('cad_departamento', '=', 'DIRETORIA')->where('status', '=', 'Aberta')
+               ->where('cad_departamento', '=', 'DIRETORIA')
                ->get();
    
                
                $caixa_departamento_Producao = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
-               ->where('cad_departamento', '=', 'PRODUÇÃO')->where('status', '=', 'Aberta')
+               ->where('cad_departamento', '=', 'PRODUÇÃO')
                ->get();
    
                
                $caixa_departamento_Pos_Producao = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
-               ->where('cad_departamento', '=', 'PÓS-PRODUÇÃO')->where('status', '=', 'Aberta')
+               ->where('cad_departamento', '=', 'PÓS-PRODUÇÃO')
                ->get();
    
                
                $caixa_departamento_Comercial = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
-               ->where('cad_departamento', '=', 'COMERCIAL')->where('status', '=', 'Aberta')
+               ->where('cad_departamento', '=', 'COMERCIAL')
                ->get();
    
                
                $caixa_departamento_Tecnica = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
-               ->where('cad_departamento', '=', 'TÉCNICA')->where('status', '=', 'Aberta')
+               ->where('cad_departamento', '=', 'TÉCNICA')
                ->get();
    
                
                $caixa_departamento_Copiagem = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
-               ->where('cad_departamento', '=', 'COPIAGEM')->where('status', '=', 'Aberta')
+               ->where('cad_departamento', '=', 'COPIAGEM')
                ->get();
    
                
                $caixa_departamento_Edicao = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
-               ->where('cad_departamento', '=', 'EDIÇÃO')->where('status', '=', 'Aberta')
+               ->where('cad_departamento', '=', 'EDIÇÃO')
                ->get();
    
                
                $caixa_departamento_Mam = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
-               ->where('cad_departamento', '=', 'MAM')->where('status', '=', 'Aberta')
+               ->where('cad_departamento', '=', 'MAM')
                ->get();
    
                
                $caixa_departamento_Nucleo_Conteudo = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
-               ->where('cad_departamento', '=', 'NÚCLEO-CONTEÚDO')->where('status', '=', 'Aberta')
+               ->where('cad_departamento', '=', 'NÚCLEO-CONTEÚDO')
                ->get();
     
                
                $caixa_departamento_Campanha_Politica = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
-               ->where('cad_departamento', '=', 'CAMPANHA-POLÍTICA')->where('status', '=', 'Aberta')
+               ->where('cad_departamento', '=', 'CAMPANHA-POLÍTICA')
                ->get();
                
                 
                 $caixa_departamento_Projetos_Especiais = DB::table('caixa__departamentos')
                 ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                 ->select('cad_departamento', 'ordem')
-                ->where('cad_departamento', '=', 'PROJETOS-ESPECIAIS')->where('status', '=', 'Aberta')
+                ->where('cad_departamento', '=', 'PROJETOS-ESPECIAIS')
                 ->get();
                
                
                $caixa_departamento_Outros = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
-               ->where('cad_departamento', '=', 'OUTROS')->where('status', '=', 'Aberta')
+               ->where('cad_departamento', '=', 'OUTROS')
                ->get();    
 
                     
