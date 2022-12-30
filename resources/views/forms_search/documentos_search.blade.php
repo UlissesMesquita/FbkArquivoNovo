@@ -519,6 +519,7 @@
 
             </tr>
         @endforeach
+        {{ $dash->links() }}
     </tbody>
 </table>
 
