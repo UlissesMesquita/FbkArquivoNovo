@@ -10,10 +10,8 @@ use App\Pesquisas;
 use App\Job;
 use App\TipoDocumento;
 use Illuminate\Http\Request;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Response;
-use Illuminate\Database\Eloquent\Collection;
+
 
 class ControladorPesquisas extends Controller
 {
@@ -32,11 +30,19 @@ class ControladorPesquisas extends Controller
             $dep = Departamentos::orderBy('cad_departamento', 'ASC')->get();
             $dest = Empresas_Destinatarias::orderBy('cad_destinatarias', 'ASC')->get();
             if(session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA') {
-                $dash = Cadastro_Documentos::all()->sortByDesc('id_codigo');
-                //$dash = DB::table('cadastro__documentos')->paginate(5);
+                //Query para utilização sem paginação
+                    //$dash = Cadastro_Documentos::all()->sortByDesc('id_codigo');
+                //Query para apaginação
+                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->paginate(50);
+
+                
                 
             }
             else {
+                //Query para utilização com paginação
+                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->where('Dep' ,'=', session()->get('departamento'))->paginate(50);
+
+                //Query para utilização sem paginação
                 $dash = Cadastro_Documentos::all()->where('Dep' ,'=', session()->get('departamento'))->sortByDesc('id_codigo');
                 
             }
