@@ -33,17 +33,20 @@ class ControladorPesquisas extends Controller
                 //Query para utilização sem paginação
                     //$dash = Cadastro_Documentos::all()->sortByDesc('id_codigo');
                 //Query para apaginação
-                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->paginate(50);
-
+                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->simplePaginate(50);
+                //$dash = Cadastro_Documentos::paginate();
                 
                 
             }
             else {
                 //Query para utilização com paginação
-                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->where('Dep' ,'=', session()->get('departamento'))->paginate(50);
+                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->where('Dep' ,'=', session()->get('departamento'))->simplePaginate(50);
+
+                
+
 
                 //Query para utilização sem paginação
-                $dash = Cadastro_Documentos::all()->where('Dep' ,'=', session()->get('departamento'))->sortByDesc('id_codigo');
+                //$dash = Cadastro_Documentos::all()->where('Dep' ,'=', session()->get('departamento'))->sortByDesc('id_codigo');
                 
             }
 
@@ -225,12 +228,12 @@ class ControladorPesquisas extends Controller
                 if( empty($request->input('data_in')) && !empty($request->input('data_out')))
                     return redirect()->back()->withErrors([
                         'data_in' => 'Sem data inicial'
-                    ])->withInput();
+                    ])->withInput()->paginate(50);
 
                     if( empty($request->input('data_out')) && ! empty($request->input('data_in')))
                     return redirect()->back()->withErrors([
                         'data_out' => 'Sem data final'
-                    ])->withInput();
+                    ])->withInput()->paginate(50);
                     $data_in =  $request->input('data_in');
                     $data_out = $request->input('data_out');
 
@@ -251,13 +254,13 @@ class ControladorPesquisas extends Controller
                 //dd($dados);
                 if(isset($data_in) && isset($data_out)){
                     if(session()->get('permissao') == 'Admin ' || session()->get('departamento') == 'DIRETORIA') {
-                        $dash = empty($dados) ? Cadastro_Documentos::whereBetween('data', [$data_in, $data_out])->get(): 
-                                Cadastro_Documentos::where($dados)->whereBetween('data', [$data_in, $data_out])->get();
+                        $dash = empty($dados) ? Cadastro_Documentos::whereBetween('data', [$data_in, $data_out])->simplePaginate(50): 
+                                Cadastro_Documentos::where($dados)->whereBetween('data', [$data_in, $data_out])->simplePaginate(50);
                         $contador = $dash->count();
                     }
 
                     else {
-                        $dash = Cadastro_Documentos::where('Dep', '=', session()->get('departamento'))->where($dados)->whereBetween('data', [$data_in, $data_out])->get();
+                        $dash = Cadastro_Documentos::where('Dep', '=', session()->get('departamento'))->where($dados)->whereBetween('data', [$data_in, $data_out])->simplePaginate(50);
                         $contador = $dash->count();
                         //dd($dash);
                     }
@@ -267,12 +270,12 @@ class ControladorPesquisas extends Controller
                 elseif (isset($dados) ) {
                     if(session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA'){
                         
-                        $dash = Cadastro_Documentos::where($dados)->orderBy('id_codigo', 'DESC')->get();
+                        $dash = Cadastro_Documentos::where($dados)->orderBy('id_codigo', 'DESC')->simplePaginate(50);
                         $contador = $dash->count();
                     }    
                     else {
 
-                        $dash = Cadastro_Documentos::where('Dep' ,'=', session()->get('departamento'))->where($dados)->get();
+                        $dash = Cadastro_Documentos::where('Dep' ,'=', session()->get('departamento'))->where($dados)->simplePaginate(50);
                         $contador = $dash->count();
                     }
                 }
@@ -285,91 +288,91 @@ class ControladorPesquisas extends Controller
                 ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                 ->select('cad_departamento', 'ordem')
                 ->where('cad_departamento', '=', 'ADM-FINANCEIRO')
-                ->get();
+                ->simplePaginate(50);
    
                
                $caixa_departamento_Diretoria = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'DIRETORIA')
-               ->get();
+               ->simplePaginate(50);
    
                
                $caixa_departamento_Producao = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'PRODUÇÃO')
-               ->get();
+               ->simplePaginate(50);
    
                
                $caixa_departamento_Pos_Producao = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'PÓS-PRODUÇÃO')
-               ->get();
+               ->simplePaginate(50);
    
                
                $caixa_departamento_Comercial = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'COMERCIAL')
-               ->get();
+               ->simplePaginate(50);
    
                
                $caixa_departamento_Tecnica = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'TÉCNICA')
-               ->get();
+               ->simplePaginate(50);
    
                
                $caixa_departamento_Copiagem = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'COPIAGEM')
-               ->get();
+               ->simplePaginate(50);
    
                
                $caixa_departamento_Edicao = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'EDIÇÃO')
-               ->get();
+               ->simplePaginate(50);
    
                
                $caixa_departamento_Mam = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'MAM')
-               ->get();
+               ->simplePaginate(50);
    
                
                $caixa_departamento_Nucleo_Conteudo = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'NÚCLEO-CONTEÚDO')
-               ->get();
+               ->simplePaginate(50);
     
                
                $caixa_departamento_Campanha_Politica = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'CAMPANHA-POLÍTICA')
-               ->get();
+               ->simplePaginate(50);
                
                 
                 $caixa_departamento_Projetos_Especiais = DB::table('caixa__departamentos')
                 ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                 ->select('cad_departamento', 'ordem')
                 ->where('cad_departamento', '=', 'PROJETOS-ESPECIAIS')
-                ->get();
+                ->simplePaginate(50);
                
                
                $caixa_departamento_Outros = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'OUTROS')
-               ->get();    
+               ->simplePaginate(50);    
 
                     
 

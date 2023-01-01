@@ -53,6 +53,15 @@ span {
     align-items: center; 
     justify-content: center; 
 }
+
+ #paginate {
+    align-items: right; 
+    justify-content: right; 
+    text-align: right;
+    position: absolute; 
+    width: 100%;
+} 
+
 /*
 Tables
 */

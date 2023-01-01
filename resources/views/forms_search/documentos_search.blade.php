@@ -430,13 +430,16 @@
 
 </div>
 
-{{-- {{ $dash->link() }} --}}
 
 @if(isset($contador))
 <h5> Registros Encontrados: {{$contador}} </h5>
 @endif
-   <!-- Mostra os dados no banco de dados -->
-   <table class="table table-striped" style="">
+
+<div id="paginate">
+    {{$dash->links()}}
+</id>
+<!-- Mostra os dados no banco de dados -->
+   <table class="table table-striped">
     <thead>
         <tr id="Cabecalho-tabela">
 
@@ -519,7 +522,6 @@
 
             </tr>
         @endforeach
-        {{ $dash->links() }}
     </tbody>
 </table>
 
