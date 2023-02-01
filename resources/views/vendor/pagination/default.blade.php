@@ -1,10 +1,12 @@
+<link rel="stylesheet" href="{{asset('css/fontawesome/css/all.css')}}">
+
 @if ($paginator->hasPages())
     <nav>
         <ul class="pagination">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
                 <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
-                    <span aria-hidden="true">&lsaquo;</span>
+                    <span aria-hidden="true"> &lsaquo; </span>
                 </li>
             @else
                 <li>
@@ -16,16 +18,16 @@
             @foreach ($elements as $element)
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
-                    <li class="disabled" aria-disabled="true"><span>{{ $element }}</span></li>
+                    <li class="disabled" aria-disabled="true">&emsp; ~ </li>
                 @endif
 
                 {{-- Array Of Links --}}
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
-                            <li class="active" aria-current="page"><span>{{ $page }}</span></li>
+                        &emsp;<li class="active" style="color:red;"  aria-current="page">  {{ $page }} </li>
                         @else
-                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                        &emsp;<li>  <a href="{{ $url }}"> {{ $page }} </a>  </li>
                         @endif
                     @endforeach
                 @endif
@@ -38,7 +40,7 @@
                 </li>
             @else
                 <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span aria-hidden="true">&rsaquo;</span>
+                    <span aria-hidden="true"> &rsaquo; </span>
                 </li>
             @endif
         </ul>

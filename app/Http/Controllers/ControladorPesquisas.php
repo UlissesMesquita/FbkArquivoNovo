@@ -33,14 +33,14 @@ class ControladorPesquisas extends Controller
                 //Query para utilização sem paginação
                     //$dash = Cadastro_Documentos::all()->sortByDesc('id_codigo');
                 //Query para apaginação
-                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->simplePaginate(50);
+                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->Paginate(50);
                 //$dash = Cadastro_Documentos::paginate();
                 
                 
             }
             else {
                 //Query para utilização com paginação
-                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->where('Dep' ,'=', session()->get('departamento'))->simplePaginate(50);
+                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->where('Dep' ,'=', session()->get('departamento'))->Paginate(50);
 
                 
 
@@ -254,13 +254,13 @@ class ControladorPesquisas extends Controller
                 //dd($dados);
                 if(isset($data_in) && isset($data_out)){
                     if(session()->get('permissao') == 'Admin ' || session()->get('departamento') == 'DIRETORIA') {
-                        $dash = empty($dados) ? Cadastro_Documentos::whereBetween('data', [$data_in, $data_out])->simplePaginate(50): 
-                                Cadastro_Documentos::where($dados)->whereBetween('data', [$data_in, $data_out])->simplePaginate(50);
+                        $dash = empty($dados) ? Cadastro_Documentos::whereBetween('data', [$data_in, $data_out])->Paginate(50): 
+                                Cadastro_Documentos::where($dados)->whereBetween('data', [$data_in, $data_out])->Paginate(50);
                         $contador = $dash->count();
                     }
 
                     else {
-                        $dash = Cadastro_Documentos::where('Dep', '=', session()->get('departamento'))->where($dados)->whereBetween('data', [$data_in, $data_out])->simplePaginate(50);
+                        $dash = Cadastro_Documentos::where('Dep', '=', session()->get('departamento'))->where($dados)->whereBetween('data', [$data_in, $data_out])->Paginate(50);
                         $contador = $dash->count();
                         //dd($dash);
                     }
@@ -270,12 +270,12 @@ class ControladorPesquisas extends Controller
                 elseif (isset($dados) ) {
                     if(session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA'){
                         
-                        $dash = Cadastro_Documentos::where($dados)->orderBy('id_codigo', 'DESC')->simplePaginate(50);
+                        $dash = Cadastro_Documentos::where($dados)->orderBy('id_codigo', 'DESC')->Paginate(50);
                         $contador = $dash->count();
                     }    
                     else {
 
-                        $dash = Cadastro_Documentos::where('Dep' ,'=', session()->get('departamento'))->where($dados)->simplePaginate(50);
+                        $dash = Cadastro_Documentos::where('Dep' ,'=', session()->get('departamento'))->where($dados)->Paginate(50);
                         $contador = $dash->count();
                     }
                 }
@@ -288,28 +288,28 @@ class ControladorPesquisas extends Controller
                 ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                 ->select('cad_departamento', 'ordem')
                 ->where('cad_departamento', '=', 'ADM-FINANCEIRO')
-                ->simplePaginate(50);
+                ->Paginate(50);
    
                
                $caixa_departamento_Diretoria = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'DIRETORIA')
-               ->simplePaginate(50);
+               ->Paginate(50);
    
                
                $caixa_departamento_Producao = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'PRODUÇÃO')
-               ->simplePaginate(50);
+               ->Paginate(50);
    
                
                $caixa_departamento_Pos_Producao = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'PÓS-PRODUÇÃO')
-               ->simplePaginate(50);
+               ->Paginate(50);
    
                
                $caixa_departamento_Comercial = DB::table('caixa__departamentos')
@@ -323,56 +323,56 @@ class ControladorPesquisas extends Controller
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'TÉCNICA')
-               ->simplePaginate(50);
+               ->Paginate(50);
    
                
                $caixa_departamento_Copiagem = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'COPIAGEM')
-               ->simplePaginate(50);
+               ->Paginate(50);
    
                
                $caixa_departamento_Edicao = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'EDIÇÃO')
-               ->simplePaginate(50);
+               ->Paginate(50);
    
                
                $caixa_departamento_Mam = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'MAM')
-               ->simplePaginate(50);
+               ->Paginate(50);
    
                
                $caixa_departamento_Nucleo_Conteudo = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'NÚCLEO-CONTEÚDO')
-               ->simplePaginate(50);
+               ->Paginate(50);
     
                
                $caixa_departamento_Campanha_Politica = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'CAMPANHA-POLÍTICA')
-               ->simplePaginate(50);
+               ->Paginate(50);
                
                 
                 $caixa_departamento_Projetos_Especiais = DB::table('caixa__departamentos')
                 ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                 ->select('cad_departamento', 'ordem')
                 ->where('cad_departamento', '=', 'PROJETOS-ESPECIAIS')
-                ->simplePaginate(50);
+                ->Paginate(50);
                
                
                $caixa_departamento_Outros = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'OUTROS')
-               ->simplePaginate(50);    
+               ->Paginate(50);    
 
                     
 
