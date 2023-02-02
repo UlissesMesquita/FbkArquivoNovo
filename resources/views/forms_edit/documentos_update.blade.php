@@ -406,7 +406,7 @@
                 <select id="Loc_Status" name="Loc_Status" class="form-control" required>
                     <option>{{$edit->Loc_Status}}</option>
                     <option> Em Processamento </option>
-                    <option> Não Arquivado </option>
+                    <option> Arquivado </option>
                 </select>
             </div>
 
