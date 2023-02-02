@@ -59,7 +59,7 @@
                             <span></span>
 
                             <!-- Botão de Editar -->
-                            <form method="GET" action="documentos_edit/{{$dashboard->id_codigo}}">
+                            <form method="GET" action="/dashboard/documentos_edit/{{$dashboard->id_codigo}}">
                                 <input type="hidden" value="{{$dashboard->id_codigo}}">
                                 <button type="submit" class="btn btn-primary">
                                     <span class="far fa-edit"></span>
@@ -68,7 +68,7 @@
 
                             <span></span>
                             <!-- Botão de Apagar -->
-                            <form method="GET" action="delete/{{$dashboard->id_codigo}}">
+                            <form method="GET" action="/dashboard/delete/{{$dashboard->id_codigo}}">
                                     <button type="submit" class="btn btn-danger">
                                         <input type="hidden" value="{{$dashboard->id_codigo}}" onclick="return confirm('Deseja realmente excluir?')">
                                         <span class="fas fa-trash"></span>
