@@ -489,14 +489,19 @@ public function edit_clone(Request $request, $id) {
 
     public function deleteAnexo(Request $request, $id_upload){
         
+        //dd($id_upload);
         $deleteFiles = Upload::where('id_upload', '=', $id_upload)->delete();
 
-        //$files = Upload::where('id_upload_codigo', '=', $request->input('id_codigo'))->get();
+        $codigo = Upload::where('id_upload', '=', $id_upload)->first();
+        if(is_null($codigo)){
+            //Atualiza e volta a pagina anterior
+            return header("Location: ".$_SERVER['HTTP_REFERER'].""); 
+        }
+        else{
+            return redirect("/dashboard/documentos_edit/". $codigo->id_upload_codigo);
+        }
 
-        $id_codigo = Upload::where('id_upload', '=', $id_upload)->first();
-        //dd($id_codigo->id_upload_codigo);
-
-        return redirect("/dashboard/documentos_edit/". $id_codigo->id_upload_codigo);
+        
 
     }
 
