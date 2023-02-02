@@ -1,6 +1,7 @@
 version: '2'
 services: 
   web:
+    platform: linux/amd64
     restart: always
     build: .
     container_name: fbk-web
@@ -10,6 +11,7 @@ services:
       - db
       
   db:
+    platform: linux/amd64
     image: mariadb
     restart: always
     container_name: fbk-db
@@ -24,6 +26,7 @@ services:
     - "./.docker/dbdata:/var/lib/mysql"
 
   nginx:
+    platform: linux/amd64
     build: ./.docker/nginx
     restart: always
     container_name: fbk-nginx
