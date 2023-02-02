@@ -420,48 +420,59 @@ public function edit_clone(Request $request, $id) {
             // $doc->Loc_Box_Eti_Outros = $request->input('Loc_Box_Eti_Outros');
 
             $doc->Loc_Maco = $request->input('Loc_Maco');
-            $doc->Loc_Status = $request->input('Loc_Status');
+            // $doc->Loc_Status = $request->input('Loc_Status');
+
             $doc->Loc_Obs = $request->input('Loc_Obs');
             $doc->criado_por = $request->input('criado_por');
-	    
-            $doc->save();
-            $doc->refresh();
 
-            //dd($doc->Loc_Box_Eti);
-            //Multiplos Uploads
-            foreach($request->allFiles()['anexo'] as $file) {
-                //dd($file->getClientOriginalName());
 
-                $fileUpload = new Upload();
-                $fileUpload->id_upload_codigo = $doc->id_codigo;
-
-                try {
-                    $fileUpload->path = $file->getClientOriginalName();
-                    //$file->storeAs('anexos/'.$fileUpload->id_upload_codigo.'/', $file->getClientOriginalName());
-                    $file->storeAs('anexos/'.$fileUpload->id_upload_codigo.'/', $file->getClientOriginalName());
-                    //dd($file->store('anexos'));
-                    //dd($fileUpload);
-                    $fileUpload->save();
-                    unset($fileUpload);
-
-                } catch (\Exception $e) {
-                    return redirect()->back()->withErrors(['erro' => 'Erro:'. $e->getMessage() ]);
+            //Verifica se "null" ou "vazio"
+            //Se verdadeiro = salva como processamento e salva
+            if (is_null($request->anexo) || empty($request->anexo)) {
+                $doc->Loc_Status = 'Em Processamento';
+                $doc->save();
+            }
+            else {
+            //Senão = Salva como arquivado e salva
+                $doc->Loc_Status = 'Arquivado';
+                $doc->save();
+                //Multiplos Uploads
+                foreach($request->allFiles()['anexo'] as $file) {
+                    $fileUpload = new Upload();
+                    $fileUpload->id_upload_codigo = $doc->id_codigo;
+                    try {
+                        //Obtém o nome da variável e atribui ao nome do arquivo
+                        $fileUpload->path = $file->getClientOriginalName();
+                        //$file->storeAs('anexos/'.$fileUpload->id_upload_codigo.'/', $file->getClientOriginalName());
+                        $file->storeAs('anexos/'.$fileUpload->id_upload_codigo.'/', $file->getClientOriginalName());
+                        //salva pdf no storage
+                        $fileUpload->save();
+                        //esvazia a variável
+                        unset($fileUpload);
+                    } 
+                    catch (\Exception $e) {
+                        return redirect()->back()->withErrors(['erro' => 'Erro:'. $e->getMessage() ]);
+                    //Fim Catch
+                    }
+                //Fim Foreach
                 }
-
-
-
+                //Atualiza
+                $doc->refresh();
+            //Fim Método   
             }
 
 
             return redirect(route('documentos_create'));
+        //Fim IF
         }
         else {
             return redirect(route('index'));
+        //Fim Else
         }
 
 
-
-       }
+    //Fim Método - Store
+    }
 
 
 

@@ -22,8 +22,7 @@ class ControladorDashboard extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
-    {
+    public function index(){
         if(session()->get('autenticado') == 1) {
             $dash = Cadastro_Documentos::all()->sortByDesc('id_codigo');
             $documentos = Cadastro_Documentos::all();
@@ -32,8 +31,6 @@ class ControladorDashboard extends Controller
         else {
             return redirect(route('index'));
         }
-  
-      
     }
 
     /**
@@ -74,7 +71,6 @@ class ControladorDashboard extends Controller
      */
     public function edit(Request $request, $id)
     {  
-
         if(session()->get('autenticado') == 1) {
             $emit  = Empresas_Emitentes::orderBy('cad_emitentes', 'ASC')->get();
             $dest = Empresas_Destinatarias::orderBy('cad_destinatarias', 'ASC')->get();
@@ -90,83 +86,71 @@ class ControladorDashboard extends Controller
             ->where('cad_departamento', '=', 'ADM-FINANCEIRO')->where('status', '=', 'Aberta')
             ->get();
 
-           
            $caixa_departamento_Diretoria = DB::table('caixa__departamentos')
            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
            ->select('cad_departamento', 'ordem')
            ->where('cad_departamento', '=', 'DIRETORIA')->where('status', '=', 'Aberta')
            ->get();
 
-           
            $caixa_departamento_Producao = DB::table('caixa__departamentos')
            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
            ->select('cad_departamento', 'ordem')
            ->where('cad_departamento', '=', 'PRODUÇÃO')->where('status', '=', 'Aberta')
            ->get();
 
-           
            $caixa_departamento_Pos_Producao = DB::table('caixa__departamentos')
            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
            ->select('cad_departamento', 'ordem')
            ->where('cad_departamento', '=', 'PÓS-PRODUÇÃO')->where('status', '=', 'Aberta')
            ->get();
 
-           
            $caixa_departamento_Comercial = DB::table('caixa__departamentos')
            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
            ->select('cad_departamento', 'ordem')
            ->where('cad_departamento', '=', 'COMERCIAL')->where('status', '=', 'Aberta')
            ->get();
 
-           
            $caixa_departamento_Tecnica = DB::table('caixa__departamentos')
            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
            ->select('cad_departamento', 'ordem')
            ->where('cad_departamento', '=', 'TÉCNICA')->where('status', '=', 'Aberta')
            ->get();
 
-           
            $caixa_departamento_Copiagem = DB::table('caixa__departamentos')
            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
            ->select('cad_departamento', 'ordem')
            ->where('cad_departamento', '=', 'COPIAGEM')->where('status', '=', 'Aberta')
            ->get();
 
-           
            $caixa_departamento_Edicao = DB::table('caixa__departamentos')
            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
            ->select('cad_departamento', 'ordem')
            ->where('cad_departamento', '=', 'EDIÇÃO')->where('status', '=', 'Aberta')
            ->get();
 
-           
            $caixa_departamento_Mam = DB::table('caixa__departamentos')
            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
            ->select('cad_departamento', 'ordem')
            ->where('cad_departamento', '=', 'MAM')->where('status', '=', 'Aberta')
            ->get();
 
-           
            $caixa_departamento_Nucleo_Conteudo = DB::table('caixa__departamentos')
            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
            ->select('cad_departamento', 'ordem')
            ->where('cad_departamento', '=', 'NÚCLEO-CONTEÚDO')->where('status', '=', 'Aberta')
            ->get();
 
-           
            $caixa_departamento_Campanha_Politica = DB::table('caixa__departamentos')
            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
            ->select('cad_departamento', 'ordem')
            ->where('cad_departamento', '=', 'CAMPANHA-POLÍTICA')->where('status', '=', 'Aberta')
            ->get();
            
-            
             $caixa_departamento_Projetos_Especiais = DB::table('caixa__departamentos')
             ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
             ->select('cad_departamento', 'ordem')
             ->where('cad_departamento', '=', 'PROJETOS-ESPECIAIS')->where('status', '=', 'Aberta')
             ->get();
-           
            
            $caixa_departamento_Outros = DB::table('caixa__departamentos')
            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
@@ -175,8 +159,6 @@ class ControladorDashboard extends Controller
            ->get();   
            
            $files = Upload::where('id_upload_codigo', '=', $id)->get();
-
-
             
             return view('forms_edit/documentos_update', compact(
                 'emit',
@@ -201,15 +183,12 @@ class ControladorDashboard extends Controller
                 'caixa_departamento_Outros',
                 'files'
             
-            
-            
             ));
         }
         else {
             return redirect(route('index'));
         }
         
-
     }
 
     /**
@@ -219,8 +198,7 @@ class ControladorDashboard extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {   
+    public function update(Request $request, $id){   
         if(session()->get('autenticado') == 1) {
             $doc = new Cadastro_Documentos();
 
@@ -249,8 +227,6 @@ class ControladorDashboard extends Controller
             $doc->Desfaz = $request->input('Desfaz');
 
             $doc->editado_por = $request->input('editado_por');
-            
-            // dd($doc->Loc_Box_Eti);
 
             Cadastro_Documentos::where('id_codigo', $id)->update([
                 //'data' => $doc->data,
@@ -279,41 +255,31 @@ class ControladorDashboard extends Controller
                 'editado_por' => $doc->editado_por,
                 ]);
 
-                
                 if($request->allFiles() == null) {
 
                 }
                 else {
-            //Multiplos Uploads
-            foreach($request->allFiles()['anexo'] as $file) {
-                //dd($file->getClientOriginalName());
+                    //Multiplos Uploads
+                    foreach($request->allFiles()['anexo'] as $file) {
+                        $fileUpload = new Upload();
+                        $fileUpload->id_upload_codigo = $id;
+                        try {
+                            $fileUpload->path = $file->getClientOriginalName();
+                            $file->storeAs('anexos/'.$fileUpload->id_upload_codigo.'/', $file->getClientOriginalName());
+                            $fileUpload->save();
+                            unset($fileUpload);
 
-                $fileUpload = new Upload();
-                $fileUpload->id_upload_codigo = $id;
-
-                try {
-
-                    $fileUpload->path = $file->getClientOriginalName();
-                    $file->storeAs('anexos/'.$fileUpload->id_upload_codigo.'/', $file->getClientOriginalName());
-                    //dd($file->store('anexos'));
-                    //dd($fileUpload);
-                    $fileUpload->save();
-                    unset($fileUpload);
-
-                } catch (\Exception $e) {
-                    return redirect()->back()->withErrors(['erro' => 'Erro:'. $e->getMessage() ]);
+                        } catch (\Exception $e) {
+                            return redirect()->back()->withErrors(['erro' => 'Erro:'. $e->getMessage() ]);
+                        }
+                    }
                 }
-            }
-        }
 
-
-                return redirect(route('pesquisa_index'));
+            return redirect(route('pesquisa_index'));
         }
         else {
             return redirect(route('index'));
-        }
-
-        
+        } 
     }
 
     /**
