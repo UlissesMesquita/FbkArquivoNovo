@@ -429,7 +429,7 @@ Dados do Documento
                 </select>
             </div>
 
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
                 <label><b>Status:*</b></label>
                 <label for="Loc_Status"></label>
                 <select id="Loc_Status" name="Loc_Status" class="form-control" required>
@@ -438,7 +438,7 @@ Dados do Documento
                     <option>Não Arquivado</option>
                     <option>Em Processamento</option>
                 </select>
-            </div>
+            </div> -->
 
 
 
@@ -462,7 +462,7 @@ Dados do Documento
                             <div class="custom-file">
                                 <label class="custom-file-label" for="arquivo_campo">Upload..</label>
                                 <input type="hidden" name="MAX_FILE_SIZE" value="16777216">
-                                <input type="file" name="anexo[]" required="" class="custom-file-input" id="anexo[]" aria-describedby="inputGroupFileAddon01" multiple>
+                                <input type="file" name="anexo[]" class="custom-file-input" id="anexo[]" aria-describedby="inputGroupFileAddon01" multiple>
 
                             </div>
                         </div>
