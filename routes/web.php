@@ -59,6 +59,7 @@ Route::prefix('documento')->group(function () {
     Route::GET('/', [ControladorDocumento::class, 'create'])->name('documentos_create');
     Route::POST('/novo', [ControladorDocumento::class, 'store'])->name('novo_documento');
     Route::POST('/anexo', [ControladorDocumento::class, 'show'])->name('visualizar_anexo');
+    Route::GET('/delete_anexo/{id_upload}', [ControladorDocumento::class, 'deleteAnexo'])->name('deleteAnexo');
     Route::GET('/edit_clone/{id}', [ControladorDocumento::class, 'edit_clone'])->name('edit_clone');
     Route::PUT('/clone', [ControladorDocumento::class, 'clone'])->name('clone');
 });

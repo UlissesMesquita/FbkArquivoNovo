@@ -437,6 +437,7 @@ public function edit_clone(Request $request, $id) {
 
                 try {
                     $fileUpload->path = $file->getClientOriginalName();
+                    //$file->storeAs('anexos/'.$fileUpload->id_upload_codigo.'/', $file->getClientOriginalName());
                     $file->storeAs('anexos/'.$fileUpload->id_upload_codigo.'/', $file->getClientOriginalName());
                     //dd($file->store('anexos'));
                     //dd($fileUpload);
@@ -475,6 +476,8 @@ public function edit_clone(Request $request, $id) {
         if(session()->get('autenticado') == 1) {
             $files = Upload::where('id_upload_codigo', '=', $request->input('id_codigo'))->get();
 
+
+
             return view('forms_create/visualizar_anexo', compact('files'));
         }
         else {
@@ -483,6 +486,20 @@ public function edit_clone(Request $request, $id) {
 
 
     }
+
+    public function deleteAnexo(Request $request, $id_upload){
+        
+        $deleteFiles = Upload::where('id_upload', '=', $id_upload)->delete();
+
+        //$files = Upload::where('id_upload_codigo', '=', $request->input('id_codigo'))->get();
+
+        $id_codigo = Upload::where('id_upload', '=', $id_upload)->first();
+        //dd($id_codigo->id_upload_codigo);
+
+        return redirect("/dashboard/documentos_edit/". $id_codigo->id_upload_codigo);
+
+    }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -13,7 +13,7 @@ use App\Job;
 use App\Cadastro_Documentos;
 use App\Upload;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Storage;
 
 class ControladorDashboard extends Controller
 {
@@ -72,7 +72,7 @@ class ControladorDashboard extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {  
 
         if(session()->get('autenticado') == 1) {
@@ -172,7 +172,9 @@ class ControladorDashboard extends Controller
            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
            ->select('cad_departamento', 'ordem')
            ->where('cad_departamento', '=', 'OUTROS')->where('status', '=', 'Aberta')
-           ->get();             
+           ->get();   
+           
+           $files = Upload::where('id_upload_codigo', '=', $id)->get();
 
 
             
@@ -196,7 +198,8 @@ class ControladorDashboard extends Controller
                 'caixa_departamento_Nucleo_Conteudo',
                 'caixa_departamento_Campanha_Politica',
                 'caixa_departamento_Projetos_Especiais',
-                'caixa_departamento_Outros'
+                'caixa_departamento_Outros',
+                'files'
             
             
             
@@ -289,6 +292,7 @@ class ControladorDashboard extends Controller
                 $fileUpload->id_upload_codigo = $id;
 
                 try {
+
                     $fileUpload->path = $file->getClientOriginalName();
                     $file->storeAs('anexos/'.$fileUpload->id_upload_codigo.'/', $file->getClientOriginalName());
                     //dd($file->store('anexos'));
