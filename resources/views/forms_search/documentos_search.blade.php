@@ -473,7 +473,7 @@
         @foreach($dash as $dashboard)
             <tr>
                     <td scope="row">{{$dashboard->id_codigo}}</td>
-                    <td> <a href="documentos_edit/{{$dashboard->id_codigo}}" method="GET">{{date('d/m/Y', strtotime($dashboard->data))}}</a></td>
+                    <td> <a href="/dashboard/documentos_edit/{{$dashboard->id_codigo}}" method="GET">{{date('d/m/Y', strtotime($dashboard->data))}}</a></td>
                     <td>{{$dashboard->Emp_Emit}}</td>
                     <td>{{$dashboard->Emp_Dest}}</td>
                     <td>{{$dashboard->Dep}}</td>    
@@ -495,7 +495,7 @@
 
                             <!-- Botão de Editar -->
                             @if(session()->get('departamento') == $dashboard->Dep || session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA')
-                                <a id="edit-icon" class="far fa-edit fa-2x" href="documentos_edit/{{$dashboard->id_codigo}}" method="GET" onclick=""></a>
+                                <a id="edit-icon" class="far fa-edit fa-2x" href="/dashboard/documentos_edit/{{$dashboard->id_codigo}}" method="GET" onclick=""></a>
                             @endif
 
                                 <!-- Botão de Clonar -->
@@ -505,7 +505,7 @@
                         
                             <!-- Botão de Apagar -->
                             @if(session()->get('permissao') == 'Admin')
-                                <a id="delete-icon" class="fas fa-trash fa-2x" href="delete/{{$dashboard->id_codigo}}" onclick="return confirm('Deseja realmente excluir?')" method="GET"></a>
+                                <a id="delete-icon" class="fas fa-trash fa-2x" href="/dashboard/delete/{{$dashboard->id_codigo}}" onclick="return confirm('Deseja realmente excluir?')" method="GET"></a>
                             @endif
 
                             <!-- Botão de Anexo -->

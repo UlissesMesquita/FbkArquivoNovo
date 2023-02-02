@@ -323,7 +323,7 @@ class ControladorDashboard extends Controller
         if(session()->get('autenticado') == 1) {
             $document = Cadastro_Documentos::find($id);
             $document->Delete();
-            return redirect(route('dashboard'));
+            return redirect(route('pesquisa_index'));
         }
         else {
             return redirect(route('index'));
