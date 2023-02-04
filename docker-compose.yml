@@ -6,6 +6,7 @@ services:
     container_name: fbk-web
     volumes: 
       - ./:/var/www/
+      - .docker/php/php.ini /usr/local/etc/php/
     depends_on: 
       - db
       
