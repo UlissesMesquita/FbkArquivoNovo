@@ -32,13 +32,15 @@ RUN apk add --no-cache --virtual build-essentials \
     docker-php-ext-install zip && \
     apk del build-essentials && rm -rf /usr/src/php*
 
+COPY .docker/php/php.ini /usr/local/etc/php/
+
+
 WORKDIR /var/www
 
 RUN rm -rf /var/www/html
 RUN ln -s public html
 
-RUN rm  /usr/local/etc/php/php.ini-production
-COPY .docker/php/php.ini /usr/local/etc/php/
+
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
