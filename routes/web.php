@@ -25,6 +25,10 @@ use App\Http\Controllers\ControladorDestinataria;
 use App\Http\Controllers\ControladorPesquisas;
 use App\Http\Controllers\ControladorCaixasDepartamento;
 
+//Rota Teste
+Route::get('/teste', function(){
+    return phpinfo();
+});
 
 //Rotas para Login
 Route::prefix('/')->group(function () {
