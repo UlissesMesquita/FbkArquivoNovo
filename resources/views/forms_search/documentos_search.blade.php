@@ -186,7 +186,7 @@
                             <label><b>Caixa:*</b></label>
                             <label for="Loc_Box_Eti"></label>
                             <select name="Loc_Box_Eti" id="Loc_Box_Eti" class="form-control"  >
-                                    <option>Escolha..</option>
+                                    <option selected value="{{null}}">Escolha..</option>
                             </select>
                         </div>     
                     
