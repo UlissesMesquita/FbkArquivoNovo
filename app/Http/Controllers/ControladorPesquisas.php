@@ -241,7 +241,7 @@ class ControladorPesquisas extends Controller
 
 
             $dados = $this->arrayParse($request);
-            dd($dados);
+            //dd($dados);
             $emit = Empresas_Emitentes::orderBy('cad_emitentes', 'ASC')->get();
             $dest = Empresas_Destinatarias::orderBy('cad_destinatarias', 'ASC')->get();
             $dep = Departamentos::orderBy('cad_departamento', 'ASC')->get();
