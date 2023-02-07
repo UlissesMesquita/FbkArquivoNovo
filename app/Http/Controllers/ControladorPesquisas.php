@@ -237,11 +237,10 @@ class ControladorPesquisas extends Controller
                     $data_in =  $request->input('data_in');
                     $data_out = $request->input('data_out');
 
-            }   //
+            }
 
-
+            //dd($request->attributes);
             $dados = $this->arrayParse($request);
-            
             $emit = Empresas_Emitentes::orderBy('cad_emitentes', 'ASC')->get();
             $dest = Empresas_Destinatarias::orderBy('cad_destinatarias', 'ASC')->get();
             $dep = Departamentos::orderBy('cad_departamento', 'ASC')->get();
@@ -262,7 +261,7 @@ class ControladorPesquisas extends Controller
                     else {
                         $dash = Cadastro_Documentos::where('Dep', '=', session()->get('departamento'))->where($dados)->whereBetween('data', [$data_in, $data_out])->Paginate(50);
                         $contador = $dash->count();
-                        //dd($dash);
+                        dd($dash);
                     }
 
                 }
