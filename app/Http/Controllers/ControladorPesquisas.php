@@ -375,11 +375,13 @@ class ControladorPesquisas extends Controller
 
                     
 
+               //dd($dash);
 
             
                 
                     if ($contador == null && $dash == null && $dados == null) {
                         $contador = 0;
+
                         return view('forms_search/documentos_search', compact(
                             'tp_documento',
                             'dest',
@@ -512,14 +514,21 @@ class ControladorPesquisas extends Controller
     private function arrayParse(Request $request) {
         
     
-        
-        foreach($request->toArray() as $key => $valor) {
-            if ($valor <> NULL && $valor <> '' && $key <> '_token' && $key <> 'data_in' && $key <> 'data_out') {
+        $dados = [];
+        $data = $request->all();
+        foreach($data as $key => $valor) {
+            if ($valor <> NULL && $valor <> '' && $key <> '_token' && $key <> 'data_in' && $key <> 'data_out' && $key != 'Loc_Box_Eti') {
                 $dados[] = [DB::raw('UPPER('.$key.')'), 'LIKE', '%'. strtoupper($valor). '%'];
             }
 
+            if ($key == 'Loc_Box_Eti' && isset($data['Dep']) && !is_null($data['Dep'])) {
+                $dados[] = [DB::raw('UPPER('.$key.')'), 'LIKE', '%'. strtoupper($valor). '%'];
+            }
+            
 
         }
+
+         //dd($dados);
             return isset($dados)? $dados:[];
     }
 

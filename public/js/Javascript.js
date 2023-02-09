@@ -4,6 +4,10 @@ $(document).ready(function() {
   //Select para mostrar e esconder divs
   $('#Dep').on('change',function(){
       var SelectValue='.'+$(this).val();
+      //console.log(SelectValue);
+
+      $('select #Loc_Box_Eti').prop("disabled", true);
+
 
       //Desabilita o Campo
       $(".DivPai #Loc_Box_Eti").prop( "disabled", true );
