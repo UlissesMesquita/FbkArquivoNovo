@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use http\Header;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ControladorDocumento extends Controller
 {
@@ -451,6 +452,7 @@ public function edit_clone(Request $request, $id) {
                         unset($fileUpload);
                     } 
                     catch (\Exception $e) {
+                        Log::info('UPLOAD:' + $e->getMessage());
                         return redirect()->back()->withErrors(['erro' => 'Erro:'. $e->getMessage() ]);
                     //Fim Catch
                     }

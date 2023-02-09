@@ -461,7 +461,7 @@ Dados do Documento
                         <div class="input-group mb-10">
                             <div class="custom-file">
                                 <label class="custom-file-label" for="arquivo_campo">Upload..</label>
-                                <input type="hidden" name="MAX_FILE_SIZE" value="16777216">
+                                <input type="hidden" name="MAX_FILE_SIZE">
                                 <input type="file" name="anexo[]" class="custom-file-input" id="anexo[]" aria-describedby="inputGroupFileAddon01" multiple>
 
                             </div>
