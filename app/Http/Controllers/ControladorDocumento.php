@@ -484,12 +484,11 @@ public function edit_clone(Request $request, $id) {
      * @param  int  $id
      * @return Response
      */
-    public function show(Request $request)
+    public function show($id_codigo)
     {
+
         if(session()->get('autenticado') == 1) {
-            $files = Upload::where('id_upload_codigo', '=', $request->input('id_codigo'))->get();
-
-
+            $files = Upload::where('id_upload_codigo', '=', $id_codigo)->get();
 
             return view('forms_create/visualizar_anexo', compact('files'));
         }

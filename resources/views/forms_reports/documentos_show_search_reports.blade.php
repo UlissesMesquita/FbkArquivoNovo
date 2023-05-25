@@ -18,7 +18,8 @@
 @endif
 
     <!-- Mostra os dados no banco de dados -->
-
+    <form id="exportPdfDois" method="POST" href='/relatorios/Epdf'>
+        @csrf
     <table class="table table-striped">
         <thead>
             <tr id="Cabecalho-tabela">
@@ -47,7 +48,12 @@
 
         <tbody>
 
+            
+                @csrf 
+                {{-- <input type="hidden" name="#" value="#"> --}}
+                <button type="submit" class="btn btn-primary" onclick="console.log('Clicado')">PDF</button>
 
+            
 
             @foreach($dash as $dashboard)
                 <tr>
@@ -89,17 +95,20 @@
 
                         <!-- Botão de Anexo -->
                         @if(session()->get('departamento') == $dashboard->Dep || session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA')
-                            <form method="POST" action="{{route('visualizar_anexo')}}">
+                            {{-- <form method="POST" action="{{route('visualizar_anexo')}}">
                                 @csrf 
                                     <input type="hidden" name="id_codigo" value="{{$dashboard->id_codigo}}">
                                     <button type="submit" class="btn btn-link" target="_blank"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></button>
-                            </form>
+                            </form> --}}
                         @endif
                     </td>
                 </tr>
             </tr>
             @endforeach
+
+        
+
         </tbody>
     </table>
-
+</form>
 @endsection

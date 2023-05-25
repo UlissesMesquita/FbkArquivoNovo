@@ -420,21 +420,6 @@
             </form>
 
         <br>
-</div>
-
-
-<!-- Botão de Exportar PDF -->
-{{-- <form method="POST" href='/relatorios/Epdf/'. $dash>
-    @csrf
-    <input type="hidden" name="#" value="#">
-    <button type="submit" class="btn btn-primary" onclick="console.log('Clicado')">PDF</button>
-</form> --}}
-
-<form method="GET" href='/relatorios/Epdf/'. $dash>
-    @csrf
-    {{-- <input type="hidden" name="#" value="#"> --}}
-    <button type="submit" class="btn btn-primary" onclick="console.log('Clicado')">PDF</button>
-</form>
 
 
 @if(isset($contador))
@@ -446,6 +431,7 @@
     {{ $dash->links('pagination::default') }}
 </div>
     
+
 
 <!-- Mostra os dados no banco de dados -->
    <table class="table table-striped">
@@ -479,12 +465,15 @@
         
 
     <tbody>
-
-        @foreach($dash as $dashboard)
+            <form id="exportPdf" method="POST" action="{{route('export_Pdf')}}">
+                @csrf 
+                <button type="submit" class="btn btn-primary" onclick="console.log('Clicado')">PDF</button>
             
+        @foreach($dash as $dashboard)
+
             <tr>
 
-
+                    <input type="hidden" name="dash_id[{{ $loop->index }}]" id="" value="{{$dashboard->id_codigo}}">
                     <td scope="row">{{$dashboard->id_codigo}}</td>
                     <td> <a href="/dashboard/documentos_edit/{{$dashboard->id_codigo}}" method="GET">{{date('d/m/Y', strtotime($dashboard->data))}}</a></td>
                     <td>{{$dashboard->Emp_Emit}}</td>
@@ -502,8 +491,9 @@
                     <td>{{$dashboard->Loc_Maco}}</td>
                     <td>{{$dashboard->Dt_Ref}}</td>  
                     <td>R${{$dashboard->Valor_Doc}}</td>
-    {{-- </form>            --}}
+                
                 <td>
+                
                     
                 
                     <!-- Botão de Editar -->
@@ -523,11 +513,7 @@
 
                     <!-- Botão de Anexo -->
                     @if(session()->get('departamento') == $dashboard->Dep || session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA')
-                        <form method="POST" action="{{route('visualizar_anexo')}}">
-                            @csrf 
-                                <input type="hidden" name="id_codigo" value="{{$dashboard->id_codigo}}">
-                                <button type="submit" class="btn btn-link" target="_blank"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></button>
-                        </form>
+                        <a type="submit"href="documento/anexo/{{$dashboard->id_codigo}}" class="btn btn-link" target="_blank"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></a>
                     @endif
                       
  
@@ -538,10 +524,11 @@
 
             </tr>
         @endforeach
-    
+            </form>
 
     </tbody>
 </table>
+
 
 
 @endsection

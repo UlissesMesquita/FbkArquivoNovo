@@ -438,13 +438,52 @@ class ControladorRelatorio extends Controller
     }
 
     public function exportPdf(Request $request){
-        $request->input('exportPdf');
-        $data = $request;
-        dd($data);
+        // $request->input('exportPdf');
 
-        // Lógica para gerar o PDF com os dados da tabela
-         $pdf = PDF::loadView('pdfs.pdf', compact('data'));
-         return $pdf->stream('tabela.pdf');
+        $dashIds = $request->dash_id;
+        
+        $cadastros = Cadastro_Documentos::wherein('id_codigo', $dashIds)->get();
+
+        //dd($cadastros);
+
+         //return view('pdfs/pdf', compact('cadastros'));
+        $pdf = PDF::loadView('pdfs.pdf', compact('cadastros'));
+        $pdf->set_option(
+            'isHtml5ParserEnabled', true, 
+            ['dpi' => 150, 'times-new-roman' ])->
+            setPaper('a4', 'landscape');
+
+            
+        return $pdf->stream('tabela.pdf');
+        //$pdf->download('tabela.pdf');
+
+        //return PDF::loadHTML('pdfs.pdf', compact('cadastros'))->setPaper('a4', 'landscape')->setWarnings(false)->save('myfile.pdf');
+       //dd($documentos);
+
+       // Lógica para gerar o PDF com os dados da tabela
+        
+        // $pdf->stream('tabela.pdf');
+        // foreach ($dashIds as $dash) {
+    // for ($i=0; $i < count($dashIds); $i++) { 
+               
+    //     var_dump($i);
+    //     $documentos = Cadastro_documentos::where('id_codigo', $dashIds[$i])->get();
+    //     $documentosArray = array_push($documentosArray, $documentos);
+    
+    // }
+
+        //dd($documentosArray);
+
+
+                
+
+        //  $pdf = PDF::loadView('pdfs.pdf', compact('documentos'));
+        //  $pdf->set_option('isHtml5ParserEnabled', true);
+        // //dd($documentos);
+
+        // // Lógica para gerar o PDF com os dados da tabela
+         
+        //  $pdf->stream('tabela.pdf');
 
     }
 
