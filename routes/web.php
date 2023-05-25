@@ -135,7 +135,7 @@ Route::prefix('pesquisas')->group(function () {
 Route::prefix('relatorios')->group(function () {
     Route::GET('/', [ControladorRelatorio::class, 'index'])->name('relatorio_index');
     Route::POST('/', [ControladorRelatorio::class, 'gerarRelatorio'])->name('gerar_relatorio');
-    Route::POST('/exportPdf', [ControladorRelatorio::class, 'exportPdf'])->name('exportPdf');
+    Route::POST('/Epdf', [ControladorRelatorio::class, 'exportPdf'])->name('export_Pdf');
 });
 
 

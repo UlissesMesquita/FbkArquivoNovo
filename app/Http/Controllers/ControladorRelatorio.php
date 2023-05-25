@@ -342,17 +342,39 @@ class ControladorRelatorio extends Controller
 
                     
 
-               //dd($dash);
+               //dd($request);
 
             
                 
                     if ($contador == null && $dash == null && $dados == null) {
                         $contador = 0;
 
-
+                        $dados = [
+                            'tp_documento',
+                             'dest',
+                             'emit',
+                             'dash',
+                             'job',
+                             'contador',
+                             'dep',
+                             'caixa_departamento_Financeiro',
+                             'caixa_departamento_Diretoria',
+                             'caixa_departamento_Producao',
+                             'caixa_departamento_Pos_Producao',
+                             'caixa_departamento_Comercial',
+                             'caixa_departamento_Tecnica',
+                             'caixa_departamento_Copiagem',
+                             'caixa_departamento_Edicao',
+                             'caixa_departamento_Mam',
+                             'caixa_departamento_Nucleo_Conteudo',
+                             'caixa_departamento_Campanha_Politica',
+                             'caixa_departamento_Projetos_Especiais',
+                             'caixa_departamento_Outros'
+                        ];
 
                         
-                         return view('forms_reports.documentos_search_reports', compact(
+                         return view('forms_reports.documentos_search_reports', compact([
+                             'dados',
                              'tp_documento',
                              'dest',
                              'emit',
@@ -376,12 +398,13 @@ class ControladorRelatorio extends Controller
                         
 
                         
-                        ));
+                        ]));
                     }
                     else {
 
                         //Visualização em PDF
-                        return view('forms_reports.documentos_search_reports', compact(
+                        return view('forms_reports.documentos_search_reports', compact([
+                            'dados',
                             'tp_documento',
                             'dest',
                             'emit',
@@ -405,7 +428,7 @@ class ControladorRelatorio extends Controller
                         
                         
                         
-                        ));
+                        ]));
                     }
                 }
                 
@@ -415,11 +438,9 @@ class ControladorRelatorio extends Controller
     }
 
     public function exportPdf(Request $request){
-        
-        
-        //$data = $request->input('pdf');
-        $data = $request->all();
-       dd($data);
+        $request->input('exportPdf');
+        $data = $request;
+        dd($data);
 
         // Lógica para gerar o PDF com os dados da tabela
          $pdf = PDF::loadView('pdfs.pdf', compact('data'));

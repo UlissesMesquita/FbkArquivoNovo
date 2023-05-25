@@ -423,7 +423,14 @@
 </div>
 
 
-
+<!-- Botão de Editar -->
+<form method="POST" action="{{ url("/relatorios/Epdf") }}">
+    {{ csrf_field() }}
+    <input type="hidden" name="exportPdf" >
+    <button type="submit" class="btn btn-primary">
+        Hello
+    </button>
+</form>
 
 
 
@@ -465,20 +472,13 @@
     </thead>
 
 
-    <form method="POST" action="{{ route('exportPdf') }}">
-        @csrf
-        <button type="submit">Gerar PDF</button>
-        <input type="hidden" name="pdf">
+
+        
 
     <tbody>
 
-
-
-
         @foreach($dash as $dashboard)
-
-
-
+            
             <tr>
 
 
@@ -499,7 +499,7 @@
                     <td>{{$dashboard->Loc_Maco}}</td>
                     <td>{{$dashboard->Dt_Ref}}</td>  
                     <td>R${{$dashboard->Valor_Doc}}</td>
-            </form>
+    {{-- </form>            --}}
                 <td>
                     
 
@@ -535,6 +535,7 @@
 
             </tr>
         @endforeach
+    
 
     </tbody>
 </table>

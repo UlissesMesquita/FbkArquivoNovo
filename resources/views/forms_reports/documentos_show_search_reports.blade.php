@@ -13,16 +13,10 @@
 <h2> Relatório Solicitado </h2>
 
 
-<form class="form-horizontal" name="form" method="POST" action="{{route('exportPdf')}}" enctype="multipart/form-data">
-    @csrf
-    @method('POST')
+@if(isset($contador))
+<h5> Registros Encontrados: {{$contador}} </h5>
+@endif
 
-    <div class="form-group">
-        <label class="col-md-6 control-label" for="Cadastrar"></label>
-          <div class="col-md-6" id="botoes_cadastros">
-            <button id="pdf" name="pdf" class="btn btn-lg btn-success" type="Submit"> pdf</button>
-          </div>
-      </div>
     <!-- Mostra os dados no banco de dados -->
 
     <table class="table table-striped">
@@ -54,6 +48,7 @@
         <tbody>
 
 
+
             @foreach($dash as $dashboard)
                 <tr>
                         <td scope="row">{{$dashboard->id_codigo}}</td>
@@ -73,7 +68,7 @@
                         <td>{{$dashboard->Loc_Maco}}</td>
                         <td>{{$dashboard->Dt_Ref}}</td>  
                         <td>R${{$dashboard->Valor_Doc}}</td>
-</form>
+         
                     <td>
                         
 
