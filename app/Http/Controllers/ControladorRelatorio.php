@@ -12,6 +12,8 @@ use App\TipoDocumento;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Log;
 
 
 class ControladorRelatorio extends Controller
@@ -30,14 +32,14 @@ class ControladorRelatorio extends Controller
                 //Query para utilização sem paginação
                     //$dash = Cadastro_Documentos::all()->sortByDesc('id_codigo');
                 //Query para apaginação
-                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->Paginate(50000000);
+                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->Paginate(200);
                 //$dash = Cadastro_Documentos::paginate();
                 
                 
             }
             else {
                 //Query para utilização com paginação
-                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->where('Dep' ,'=', session()->get('departamento'))->Paginate(50000000);
+                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->where('Dep' ,'=', session()->get('departamento'))->Paginate(200);
 
                 
 
@@ -188,6 +190,9 @@ class ControladorRelatorio extends Controller
 
 
     public function gerarRelatorio(Request $request){
+
+        Log::alert("Erro 500");
+        Log::info("Erro");
         //($request);
         if(session()->get('autenticado') == 1) {
             // Vetificar se tem data_in e data_out 
@@ -195,12 +200,12 @@ class ControladorRelatorio extends Controller
                 if( empty($request->input('data_in')) && !empty($request->input('data_out')))
                     return redirect()->back()->withErrors([
                         'data_in' => 'Sem data inicial'
-                    ])->withInput()->paginate(50000000);
+                    ])->withInput()->paginate(200);
 
                     if( empty($request->input('data_out')) && ! empty($request->input('data_in')))
                     return redirect()->back()->withErrors([
                         'data_out' => 'Sem data final'
-                    ])->withInput()->paginate(50000000);
+                    ])->withInput()->paginate(200);
                     $data_in =  $request->input('data_in');
                     $data_out = $request->input('data_out');
 
@@ -220,13 +225,13 @@ class ControladorRelatorio extends Controller
                 //dd($dados);
                 if(isset($data_in) && isset($data_out)){
                     if(session()->get('permissao') == 'Admin ' || session()->get('departamento') == 'DIRETORIA') {
-                        $dash = empty($dados) ? Cadastro_Documentos::whereBetween('data', [$data_in, $data_out])->Paginate(50000000): 
-                                Cadastro_Documentos::where($dados)->whereBetween('data', [$data_in, $data_out])->Paginate(50000000);
+                        $dash = empty($dados) ? Cadastro_Documentos::whereBetween('data', [$data_in, $data_out])->Paginate(200): 
+                                Cadastro_Documentos::where($dados)->whereBetween('data', [$data_in, $data_out])->Paginate(200);
                         $contador = $dash->count();
                     }
 
                     else {
-                        $dash = Cadastro_Documentos::where('Dep', '=', session()->get('departamento'))->where($dados)->whereBetween('data', [$data_in, $data_out])->Paginate(50000000);
+                        $dash = Cadastro_Documentos::where('Dep', '=', session()->get('departamento'))->where($dados)->whereBetween('data', [$data_in, $data_out])->Paginate(200);
                         $contador = $dash->count();
                         dd($dash);
                     }
@@ -236,12 +241,12 @@ class ControladorRelatorio extends Controller
                 elseif (isset($dados) ) {
                     if(session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA'){
                         
-                        $dash = Cadastro_Documentos::where($dados)->orderBy('id_codigo', 'DESC')->Paginate(50000000);
+                        $dash = Cadastro_Documentos::where($dados)->orderBy('id_codigo', 'DESC')->Paginate(200);
                         $contador = $dash->count();
                     }    
                     else {
 
-                        $dash = Cadastro_Documentos::where('Dep' ,'=', session()->get('departamento'))->where($dados)->Paginate(50000000);
+                        $dash = Cadastro_Documentos::where('Dep' ,'=', session()->get('departamento'))->where($dados)->Paginate(200);
                         $contador = $dash->count();
                     }
                 }
@@ -254,91 +259,91 @@ class ControladorRelatorio extends Controller
                 ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                 ->select('cad_departamento', 'ordem')
                 ->where('cad_departamento', '=', 'ADM-FINANCEIRO')
-                ->Paginate(50000000);
+                ->Paginate(200);
    
                
                $caixa_departamento_Diretoria = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'DIRETORIA')
-               ->Paginate(50000000);
+               ->Paginate(200);
    
                
                $caixa_departamento_Producao = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'PRODUÇÃO')
-               ->Paginate(50000000);
+               ->Paginate(200);
    
                
                $caixa_departamento_Pos_Producao = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'PÓS-PRODUÇÃO')
-               ->Paginate(50000000);
+               ->Paginate(200);
    
                
                $caixa_departamento_Comercial = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'COMERCIAL')
-               ->simplePaginate(50);
+               ->simplePaginate(200);
    
                
                $caixa_departamento_Tecnica = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'TÉCNICA')
-               ->Paginate(50);
+               ->Paginate(200);
    
                
                $caixa_departamento_Copiagem = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'COPIAGEM')
-               ->Paginate(50000000);
+               ->Paginate(200);
    
                
                $caixa_departamento_Edicao = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'EDIÇÃO')
-               ->Paginate(50000000);
+               ->Paginate(200);
    
                
                $caixa_departamento_Mam = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'MAM')
-               ->Paginate(50000000);
+               ->Paginate(200);
    
                
                $caixa_departamento_Nucleo_Conteudo = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'NÚCLEO-CONTEÚDO')
-               ->Paginate(50000000);
+               ->Paginate(200);
     
                
                $caixa_departamento_Campanha_Politica = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'CAMPANHA-POLÍTICA')
-               ->Paginate(50000000);
+               ->Paginate(200);
                
                 
                 $caixa_departamento_Projetos_Especiais = DB::table('caixa__departamentos')
                 ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                 ->select('cad_departamento', 'ordem')
                 ->where('cad_departamento', '=', 'PROJETOS-ESPECIAIS')
-                ->Paginate(50000000);
+                ->Paginate(200);
                
                
                $caixa_departamento_Outros = DB::table('caixa__departamentos')
                ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
                ->select('cad_departamento', 'ordem')
                ->where('cad_departamento', '=', 'OUTROS')
-               ->Paginate(50000000);    
+               ->Paginate(200);    
 
                     
 
@@ -447,7 +452,8 @@ class ControladorRelatorio extends Controller
             ['dpi' => 150, 'times-new-roman' ])->
             setPaper('a4', 'landscape');
 
-        return $pdf->stream('tabela.pdf');
+        //return $pdf->stream('tabela.pdf');
+        return $pdf->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
  
     }
 
