@@ -5,8 +5,8 @@ services:
     build: .
     container_name: fbk-web
     volumes: 
-      - ./:/var/www/
-      - .docker/php/php.ini /usr/local/etc/php/
+      - "./:/var/www/"
+      - ".docker/php/:/usr/local/etc/php/"
     depends_on: 
       - db
       
@@ -33,9 +33,13 @@ services:
       - "443:443" 
     
     volumes: 
+<<<<<<< HEAD
       - ./:/var/www
       - /etc/nginx/certs:/etc/nginx/certs  
 
+=======
+      - "./:/var/www"
+>>>>>>> 6a273e9b86f31b1d461885f35bcaea243fc77c3b
     depends_on: 
       - web
 
