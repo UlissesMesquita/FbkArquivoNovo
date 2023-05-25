@@ -215,6 +215,8 @@ class ControladorRelatorio extends Controller
             $job = Job::orderBy('nome_job', 'ASC')->get();
             $contador = Cadastro_Documentos::where($dados)->whereNotNull('id_codigo')->count();
             
+
+            
             // $dadosData = $this->arrayParseDate($request);
             
                 //dd($dados);
@@ -224,12 +226,13 @@ class ControladorRelatorio extends Controller
                         $dash = empty($dados) ? Cadastro_Documentos::whereBetween('data', [$data_in, $data_out]):
                                 Cadastro_Documentos::where($dados)->whereBetween('data', [$data_in, $data_out]);
                         $contador = $dash->count();
+                        dd($contador);
                     }
 
                     else {
                         $dash = Cadastro_Documentos::where('Dep', '=', session()->get('departamento'))->where($dados)->whereBetween('data', [$data_in, $data_out]);
                         $contador = $dash->count();
-                        dd($dash);
+                        //dd($dash);
                     }
 
                 }
@@ -343,39 +346,15 @@ class ControladorRelatorio extends Controller
 
                     
 
-               //dd($request);
+               //dd($caixa_departamento_Financeiro->ordem);
 
             
                 
                     if ($contador == null && $dash == null && $dados == null) {
                         $contador = 0;
 
-                        $dados = [
-                            'tp_documento',
-                             'dest',
-                             'emit',
-                             'dash',
-                             'job',
-                             'contador',
-                             'dep',
-                             'caixa_departamento_Financeiro',
-                             'caixa_departamento_Diretoria',
-                             'caixa_departamento_Producao',
-                             'caixa_departamento_Pos_Producao',
-                             'caixa_departamento_Comercial',
-                             'caixa_departamento_Tecnica',
-                             'caixa_departamento_Copiagem',
-                             'caixa_departamento_Edicao',
-                             'caixa_departamento_Mam',
-                             'caixa_departamento_Nucleo_Conteudo',
-                             'caixa_departamento_Campanha_Politica',
-                             'caixa_departamento_Projetos_Especiais',
-                             'caixa_departamento_Outros'
-                        ];
-
                         
                          return view('forms_reports.documentos_search_reports', compact([
-                             'dados',
                              'tp_documento',
                              'dest',
                              'emit',
@@ -405,7 +384,6 @@ class ControladorRelatorio extends Controller
 
                         //Visualização em PDF
                         return view('forms_reports.documentos_search_reports', compact([
-                            'dados',
                             'tp_documento',
                             'dest',
                             'emit',
@@ -440,14 +418,9 @@ class ControladorRelatorio extends Controller
 
     public function exportPdf(Request $request){
         // $request->input('exportPdf');
-
-        $dashIds = $request->dash_id;
-        
+        $dashIds = $request->dash_id;        
         $cadastros = Cadastro_Documentos::wherein('id_codigo', $dashIds)->get();
 
-        //dd($cadastros);
-
-         //return view('pdfs/pdf', compact('cadastros'));
         $pdf = PDF::loadView('pdfs.pdf', compact('cadastros'));
         $pdf->set_option(
             'isHtml5ParserEnabled', true, 
@@ -456,35 +429,7 @@ class ControladorRelatorio extends Controller
 
             
         return $pdf->stream('tabela.pdf');
-        //$pdf->download('tabela.pdf');
-
-        //return PDF::loadHTML('pdfs.pdf', compact('cadastros'))->setPaper('a4', 'landscape')->setWarnings(false)->save('myfile.pdf');
-       //dd($documentos);
-
-       // Lógica para gerar o PDF com os dados da tabela
-        
-        // $pdf->stream('tabela.pdf');
-        // foreach ($dashIds as $dash) {
-    // for ($i=0; $i < count($dashIds); $i++) { 
-               
-    //     var_dump($i);
-    //     $documentos = Cadastro_documentos::where('id_codigo', $dashIds[$i])->get();
-    //     $documentosArray = array_push($documentosArray, $documentos);
-    
-    // }
-
-        //dd($documentosArray);
-
-
-                
-
-        //  $pdf = PDF::loadView('pdfs.pdf', compact('documentos'));
-        //  $pdf->set_option('isHtml5ParserEnabled', true);
-        // //dd($documentos);
-
-        // // Lógica para gerar o PDF com os dados da tabela
-         
-        //  $pdf->stream('tabela.pdf');
+ 
 
     }
 
