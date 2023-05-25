@@ -24,6 +24,8 @@ use App\Http\Controllers\ControladorEmitente;
 use App\Http\Controllers\ControladorDestinataria;
 use App\Http\Controllers\ControladorPesquisas;
 use App\Http\Controllers\ControladorCaixasDepartamento;
+use App\Http\Controllers\ControladorRelatorio;
+use App\Http\Controllers\ControladorRotas;
 
 //Rota Teste
 Route::get('/teste', function(){
@@ -128,6 +130,14 @@ Route::prefix('pesquisas')->group(function () {
     Route::POST('/', [ControladorPesquisas::class, 'show'])->name('pesquisa_novo');
     Route::POST('/getPdf',[ControladorPesquisas::class, 'getPdf'])->name('pesquisa_getPdf');
 });
+
+//Rotas Para Relatórios
+Route::prefix('relatorios')->group(function () {
+    Route::GET('/', [ControladorRelatorio::class, 'index'])->name('relatorio_index');
+    Route::POST('/', [ControladorRelatorio::class, 'gerarRelatorio'])->name('gerar_relatorio');
+    Route::POST('/exportPdf', [ControladorRelatorio::class, 'exportPdf'])->name('exportPdf');
+});
+
 
 //Rotas para Caixas
 Route::prefix('caixas')->group(function () {
