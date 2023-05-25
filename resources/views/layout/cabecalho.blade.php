@@ -72,6 +72,15 @@
                 </div>
             </div>
 
+        @if(session()->get('permissao') == 'Admin')
+            <!-- Relatórios -->
+            <div class="dropdown1">
+                <button class="dropbtn1">Relatórios</button>
+                    <div class="dropdown-content1">
+                        <a href="{{route('relatorio_index')}}">Relatório Geral</a>
+                </div>
+            </div>
+        @endif
             
         @if(session()->get('permissao') == 'Admin')
             <!-- Configurações -->

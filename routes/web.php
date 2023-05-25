@@ -24,6 +24,8 @@ use App\Http\Controllers\ControladorEmitente;
 use App\Http\Controllers\ControladorDestinataria;
 use App\Http\Controllers\ControladorPesquisas;
 use App\Http\Controllers\ControladorCaixasDepartamento;
+use App\Http\Controllers\ControladorRelatorio;
+use App\Http\Controllers\ControladorRotas;
 
 //Rota Teste
 Route::get('/teste', function(){
@@ -62,7 +64,7 @@ Route::prefix('/dashboard')->group(function () {
 Route::prefix('documento')->group(function () {
     Route::GET('/', [ControladorDocumento::class, 'create'])->name('documentos_create');
     Route::POST('/novo', [ControladorDocumento::class, 'store'])->name('novo_documento');
-    Route::POST('/anexo', [ControladorDocumento::class, 'show'])->name('visualizar_anexo');
+    Route::GET('/anexo/{id_codigo}', [ControladorDocumento::class, 'show'])->name('visualizar_anexo');
     Route::GET('/delete_anexo/{id_upload}', [ControladorDocumento::class, 'deleteAnexo'])->name('deleteAnexo');
     Route::GET('/edit_clone/{id}', [ControladorDocumento::class, 'edit_clone'])->name('edit_clone');
     Route::PUT('/clone', [ControladorDocumento::class, 'clone'])->name('clone');
@@ -126,8 +128,16 @@ Route::prefix('destinataria')->group(function () {
 Route::prefix('pesquisas')->group(function () {
     Route::GET('/', [ControladorPesquisas::class, 'index'])->name('pesquisa_index');
     Route::POST('/', [ControladorPesquisas::class, 'show'])->name('pesquisa_novo');
-    Route::POST('/getPdf',[ControladorPesquisas::class, 'getPdf'])->name('pesquisa_getPdf');
+    Route::GET('/getPdf/?',[ControladorPesquisas::class, 'getPdf'])->name('pesquisa_getPdf');
 });
+
+//Rotas Para Relatórios
+Route::prefix('relatorios')->group(function () {
+    Route::GET('/', [ControladorRelatorio::class, 'index'])->name('relatorio_index');
+    Route::POST('/', [ControladorRelatorio::class, 'gerarRelatorio'])->name('gerar_relatorio');
+    Route::POST('/Epdf', [ControladorRelatorio::class, 'exportPdf'])->name('export_Pdf');
+});
+
 
 //Rotas para Caixas
 Route::prefix('caixas')->group(function () {
