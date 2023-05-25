@@ -128,7 +128,7 @@ Route::prefix('destinataria')->group(function () {
 Route::prefix('pesquisas')->group(function () {
     Route::GET('/', [ControladorPesquisas::class, 'index'])->name('pesquisa_index');
     Route::POST('/', [ControladorPesquisas::class, 'show'])->name('pesquisa_novo');
-    Route::POST('/getPdf',[ControladorPesquisas::class, 'getPdf'])->name('pesquisa_getPdf');
+    Route::GET('/getPdf/?',[ControladorPesquisas::class, 'getPdf'])->name('pesquisa_getPdf');
 });
 
 //Rotas Para Relatórios

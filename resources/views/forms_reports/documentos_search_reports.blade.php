@@ -423,15 +423,18 @@
 </div>
 
 
-<!-- Botão de Editar -->
-<form method="POST" action="{{ url("/relatorios/Epdf") }}">
-    {{ csrf_field() }}
-    <input type="hidden" name="exportPdf" >
-    <button type="submit" class="btn btn-primary">
-        Hello
-    </button>
-</form>
+<!-- Botão de Exportar PDF -->
+{{-- <form method="POST" href='/relatorios/Epdf/'. $dash>
+    @csrf
+    <input type="hidden" name="#" value="#">
+    <button type="submit" class="btn btn-primary" onclick="console.log('Clicado')">PDF</button>
+</form> --}}
 
+<form method="GET" href='/relatorios/Epdf/'. $dash>
+    @csrf
+    {{-- <input type="hidden" name="#" value="#"> --}}
+    <button type="submit" class="btn btn-primary" onclick="console.log('Clicado')">PDF</button>
+</form>
 
 
 @if(isset($contador))
@@ -502,7 +505,7 @@
     {{-- </form>            --}}
                 <td>
                     
-
+                
                     <!-- Botão de Editar -->
                     @if(session()->get('departamento') == $dashboard->Dep || session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA')
                         <a id="edit-icon" style="color:green" class="far fa-edit fa-2x" href="/dashboard/documentos_edit/{{$dashboard->id_codigo}}" method="GET" onclick=""></a>
