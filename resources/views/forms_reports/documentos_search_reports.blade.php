@@ -426,11 +426,8 @@
 <h5> Registros Encontrados: {{$contador}} </h5>
 @endif
 
-<div class="d-flex justify-content-center" style="margin: auto;">
-    <!-- {{$dash->links()}} -->
-    {{ $dash->links('pagination::default') }}
-</div>
-    
+
+
 
 
 <!-- Mostra os dados no banco de dados -->
