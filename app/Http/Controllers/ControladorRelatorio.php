@@ -449,12 +449,11 @@ class ControladorRelatorio extends Controller
         $pdf = Pdf::loadView('pdfs.pdf', ['cadastros' => $cadastros]);
 
         $pdf->set_option(
-            'isHtml5ParserEnabled', true, 
-            ['dpi' => 150, 'times-new-roman' ])->
+            'isHtml5ParserEnabled', true)->
             setPaper('a4', 'landscape');
 
-        return $pdf->stream('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
-        //return $pdf->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
+        //return $pdf->stream('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
+        return $pdf->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
  
     }
 
