@@ -453,8 +453,8 @@ class ControladorRelatorio extends Controller
             ['dpi' => 150, 'times-new-roman' ])->
             setPaper('a4', 'landscape');
 
-        //return $pdf->stream('tabela.pdf');
-        return $pdf->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
+        return $pdf->stream('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
+        //return $pdf->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
  
     }
 
