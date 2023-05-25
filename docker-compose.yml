@@ -30,8 +30,12 @@ services:
     container_name: fbk-nginx
     ports:
       - "80:80"
+      - "443:443" 
+    
     volumes: 
       - ./:/var/www
+      - /etc/nginx/certs:/etc/nginx/certs  
+
     depends_on: 
       - web
 
