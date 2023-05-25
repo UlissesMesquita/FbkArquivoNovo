@@ -12,6 +12,7 @@ use App\TipoDocumento;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Log;
 
 
@@ -452,7 +453,7 @@ class ControladorRelatorio extends Controller
             setPaper('a4', 'landscape');
 
         //return $pdf->stream('tabela.pdf');
-        return $pdf->download('tabela.pdf');
+        return $pdf->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
  
     }
 
