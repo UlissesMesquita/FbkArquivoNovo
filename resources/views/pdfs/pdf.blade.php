@@ -4,8 +4,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link rel="stylesheet" href="{{asset('css/cabecalho.css')}}">
+    <link rel="stylesheet" href="/public/css/app.css">
     <link rel="stylesheet" href="{{asset('css/Stylesheet.css')}}">
 
 
@@ -13,10 +12,52 @@
 
     <meta charset="utf-8">
         <title>Relatório</title>
+
+        <style>
+            .table {
+                font-size: xx-small
+            }
+
+            h1 {
+                text-align: center; center;
+                    padding: 1px;
+                }
+
+            h2 {
+                text-align: center;
+                padding: 1px;
+            }
+
+            #paginate {
+                align-items: right; 
+                justify-content: right; 
+                text-align: right;
+                position: absolute; 
+                width: 100%;
+            } 
+
+            footer {
+                    text-align: center;
+                    width: 100%;
+                    position: fixed;
+                    bottom: 0;
+                    right: 0;
+                    color: white;
+                    display: flex;
+                    font-size: 8px;
+                    height: 4%;
+                    background: #333;
+            }
+
+        </style>
+
+
 </head>
 
 
 <body>
+
+    <h2> Relatório Geral </h2>
 
     <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/JQuery.js')}}"></script><!--Versão 3.1.0-->
@@ -91,11 +132,6 @@
         @endforeach
     </tbody>
 </table>
-
-
-</div>
-
-
 <footer>
     <b>©Controle de Arquivo Fabrika</b> Versão 1.0
     <br>
@@ -103,6 +139,12 @@
     <br>
     Autorizado para Fabrika Filmes
 </footer>
+
+
+</div>
+
+
+
 </div>
 
 

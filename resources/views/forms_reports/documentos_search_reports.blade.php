@@ -461,13 +461,24 @@
     </thead>
 
 
+    <form id="exportPdf" method="POST" action="{{route('export_Pdf')}}">
+        @csrf 
 
+
+            <!-- Botões Pagina-->
+            <div class="form-group">
+                <label class="col-md-6 control-label" for="exportar-pdf"></label>
+                    <div class="col-md-6" id="botoes_cadastros">
+                    <button type="submit" class="btn btn-primary">Exportar PDF</button>
+                    </div>
+                </div>
+
+
+        
         
 
     <tbody>
-            <form id="exportPdf" method="POST" action="{{route('export_Pdf')}}">
-                @csrf 
-                <button type="submit" class="btn btn-primary" onclick="console.log('Clicado')">PDF</button>
+
             
         @foreach($dash as $dashboard)
 
