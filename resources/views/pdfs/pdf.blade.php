@@ -109,7 +109,7 @@
         
             <tr>
                 <td scope="row">{{$dashboard->id_codigo}}</td>
-                <td> <a href="/dashboard/documentos_edit/{{$dashboard->id_codigo}}" method="GET">{{date('d/m/Y', strtotime($dashboard->data))}}</a></td>
+                <td>{{date('d/m/Y', strtotime($dashboard->data))}}</td>
                 <td>{{$dashboard->Emp_Emit}}</td>
                 <td>{{$dashboard->Emp_Dest}}</td>
                 <td>{{$dashboard->Dep}}</td>    

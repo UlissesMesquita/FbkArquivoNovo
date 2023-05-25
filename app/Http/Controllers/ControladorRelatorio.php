@@ -446,7 +446,9 @@ class ControladorRelatorio extends Controller
         $dashIds = $request->dash_id;
         $cadastros = Cadastro_Documentos::wherein('id_codigo', $dashIds)->get();
 
-        $pdf = PDF::loadView('pdfs.pdf', compact('cadastros'));
+        //$pdf = PDF::loadView('pdfs.pdf', compact('cadastros'));
+        $pdf = PDF::loadView('pdfs.pdf', ['cadastros' => $cadastros]);
+
         $pdf->set_option(
             'isHtml5ParserEnabled', true, 
             ['dpi' => 150, 'times-new-roman' ])->
