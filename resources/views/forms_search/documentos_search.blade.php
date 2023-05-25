@@ -510,11 +510,7 @@
 
                             <!-- Botão de Anexo -->
                             @if(session()->get('departamento') == $dashboard->Dep || session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA')
-                                <form method="POST" action="{{route('visualizar_anexo')}}">
-                                    @csrf 
-                                        <input type="hidden" name="id_codigo" value="{{$dashboard->id_codigo}}">
-                                        <button type="submit" class="btn btn-link" target="_blank"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></button>
-                                </form>
+                                <a type="submit"href="documento/anexo/{{$dashboard->id_codigo}}" class="btn btn-link" target="_blank"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></a>
                             @endif
                       
  
