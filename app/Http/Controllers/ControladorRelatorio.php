@@ -11,8 +11,7 @@ use App\Job;
 use App\TipoDocumento;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\PDF;
-use Illuminate\Support\Facades\Date;
+use Barryvdh\DomPDF\Facade\PDF as Pdf;
 use Illuminate\Support\Facades\Log;
 
 
@@ -447,7 +446,7 @@ class ControladorRelatorio extends Controller
         $cadastros = Cadastro_Documentos::wherein('id_codigo', $dashIds)->get();
 
         //$pdf = PDF::loadView('pdfs.pdf', compact('cadastros'));
-        $pdf = PDF::loadView('pdfs.pdf', ['cadastros' => $cadastros]);
+        $pdf = Pdf::loadView('pdfs.pdf', ['cadastros' => $cadastros]);
 
         $pdf->set_option(
             'isHtml5ParserEnabled', true, 
