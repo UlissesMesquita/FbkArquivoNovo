@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Log;
 
+use function PHPUnit\Framework\isNull;
 
 class ControladorRelatorio extends Controller
 {
@@ -443,6 +444,12 @@ class ControladorRelatorio extends Controller
 
     public function exportPdf(Request $request){
         $dashIds = $request->dash_id;
+        
+        if (isNull($dashIds) || $dashIds = '') {
+            return "Sem dados na requição";
+        }
+        else {
+        
         $cadastros = Cadastro_Documentos::wherein('id_codigo', $dashIds)->get();
 
         //$pdf = PDF::loadView('pdfs.pdf', compact('cadastros'));
@@ -454,7 +461,7 @@ class ControladorRelatorio extends Controller
 
         //return $pdf->stream('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
         return $pdf->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
- 
+        }
     }
 
     //Funções Helpers
