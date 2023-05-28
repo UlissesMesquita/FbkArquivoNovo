@@ -6,7 +6,7 @@ services:
     container_name: fbk-web
     volumes: 
       - "./:/var/www/"
-      - "./.docker/php/:/usr/local/etc/php/"
+      - ".docker/php/:/usr/local/etc/php/"
     depends_on: 
       - db
       
@@ -33,7 +33,7 @@ services:
       - "443:443" 
     volumes: 
       - "./:/var/www"
-      - "./.docker/nginx/certs/:/etc/nginx/certs/" #Adiciona Certificados para acesso SSL -> arquivos.fabrika.com.br
+      # - "./.docker/nginx/certs/:/etc/nginx/certs/" #Adiciona Certificados para acesso SSL -> arquivos.fabrika.com.br
     depends_on: 
       - web
 
