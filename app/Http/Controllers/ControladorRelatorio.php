@@ -443,21 +443,22 @@ class ControladorRelatorio extends Controller
     }
 
     public function exportPdf(Request $request){
+        
+
         $dashIds = $request->dash_id;
     
         try{
             $cadastros = Cadastro_Documentos::wherein('id_codigo', $dashIds)->get();
 
-        //$pdf = PDF::loadView('pdfs.pdf', compact('cadastros'));
-        $pdf = Pdf::loadView('pdfs.pdf', ['cadastros' => $cadastros]);
+            return $pdf = Pdf::set_option('isHtml5ParserEnabled', true)
+                            ->setPaper('a4', 'landscape')
+                            ->loadview('pdfs.pdf', ['cadastros' => $cadastros])
+                            ->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
 
-        $pdf->set_option(
-            'isHtml5ParserEnabled', true)->
-            setPaper('a4', 'landscape');
-
-        //return $pdf->stream('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
-        return $pdf->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
- 
+        }
+        catch (\Exception $e){
+            echo "Error: ". $e;
+        }
     }
 
     //Funções Helpers
