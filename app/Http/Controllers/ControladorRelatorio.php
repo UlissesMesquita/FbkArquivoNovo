@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Log;
 
+use function PHPUnit\Framework\isNull;
 
 class ControladorRelatorio extends Controller
 {
@@ -442,21 +443,21 @@ class ControladorRelatorio extends Controller
     }
 
     public function exportPdf(Request $request){
-
         $dashIds = $request->dash_id;
     
         try{
             $cadastros = Cadastro_Documentos::wherein('id_codigo', $dashIds)->get();
 
-            return $pdf = Pdf::set_option('isHtml5ParserEnabled', true)
-                            ->setPaper('a4', 'landscape')
-                            ->loadview('pdfs.pdf', ['cadastros' => $cadastros])
-                            ->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
+        //$pdf = PDF::loadView('pdfs.pdf', compact('cadastros'));
+        $pdf = Pdf::loadView('pdfs.pdf', ['cadastros' => $cadastros]);
 
-        }
-        catch (\Exception $e){
-            echo "Error: ". $e;
-        }
+        $pdf->set_option(
+            'isHtml5ParserEnabled', true)->
+            setPaper('a4', 'landscape');
+
+        //return $pdf->stream('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
+        return $pdf->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
+ 
     }
 
     //Funções Helpers
