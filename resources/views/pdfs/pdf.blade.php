@@ -9,12 +9,11 @@
     <meta charset="utf-8">
     <title>  RELATÓRIO DE CONFERÊNCIA DE ENTRADA DE LOTE </h2></title>
 
-    <img src="{{Storage::path('logos/cientik.jpg')}}">
+    <img src="{{asset('storage/logos/cientik.jpg')}}">
     {{-- {{dd(Storage::path('logos/cientik.jpg'))}} --}}
     <img src="{{asset('logos/conecta.jpg')}}">
     <img src="{{asset('logos/fabrika.jpg')}}">
     <img src="{{asset('logos/loccamera.jpg')}}">
-{{   dd(public_path())}}
         <style>
             .table {
                 font-size: xx-small;

@@ -455,7 +455,7 @@ class ControladorRelatorio extends Controller
             $ValorTotal = $ValorTotal->ValorTotal;
 
             $ValorTotal = number_format($ValorTotal, 2, ',',".");
-            define("DOMPDF_ENABLE_REMOTE", true);
+            define("DOMPDF_ENABLE_PHP", true);
             return $pdf = Pdf::set_option('isHtml5ParserEnabled', true)
                             ->setPaper('a4', 'landscape')
                             ->loadview('pdfs.pdf', 
