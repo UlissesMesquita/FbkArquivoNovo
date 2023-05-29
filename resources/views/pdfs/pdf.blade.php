@@ -24,6 +24,9 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
             }
+            tr {
+                height: 100%;
+            }
 
             h1 {
                 text-align: center; center;
