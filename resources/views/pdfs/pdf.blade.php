@@ -94,12 +94,12 @@
             <th scope="col"><b>Departamento</b></th>    
             <th scope="col"><b>Tipo Documento</b></td>
             <th scope="col"><b>Nº Documento</b></td>
-            {{-- <th scope="col"><b>Palavra Chave</b></td> --}}
+            <th scope="col"><b>Palavra Chave</b></td>
             <th scope="col"><b>Tipo projeto</b></td>
-            <th scope="col"><b>Assunto</b></th>
+            {{-- <th scope="col"><b>Assunto</b></th> --}}
             <th scope="col"><b>Nome Projeto</b></td>
-            <th scope="col"><b>Local Arquivo</b></td>
-            <th scope="col"><b>Estante</b></td>
+            {{-- <th scope="col"><b>Local Arquivo</b></td>
+            <th scope="col"><b>Estante</b></td> --}}
             <th scope="col"><b>Caixa</b></td>
             <th scope="col"><b>Maço</b></td>
             <th scope="col"><b>Mês Referência</b></td>               
@@ -126,12 +126,12 @@
                 <td>{{$dashboard->Dep}}</td>    
                 <td>{{$dashboard->tp_documento}}</td>
                 <td>{{$dashboard->Nome_Doc}}</td>
-                {{-- <td>{{$dashboard->Palavra_Chave}}</td> --}}
+                <td>{{$dashboard->Palavra_Chave}}</td>
                 <td>{{$dashboard->Tp_Projeto}}</td>
-                <td>{{$dashboard->Assunto}}</td>
+                {{-- <td>{{$dashboard->Assunto}}</td> --}}
                 <td>{{$dashboard->nome_job}}</td>
-                <td>{{$dashboard->Loc_Arquivo}}</td>
-                <td>{{$dashboard->Loc_Est}}</td>
+                {{-- <td>{{$dashboard->Loc_Arquivo}}</td>
+                <td>{{$dashboard->Loc_Est}}</td> --}}
                 <td>{{$dashboard->Loc_Box_Eti}}</td>
                 <td>{{$dashboard->Loc_Maco}}</td>
                 <td>{{$dashboard->Dt_Ref}}</td>  
