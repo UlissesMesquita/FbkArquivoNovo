@@ -16,6 +16,13 @@
         <style>
             .table {
                 font-size: xx-small
+
+            }
+            td {
+                max-width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
 
             h1 {
