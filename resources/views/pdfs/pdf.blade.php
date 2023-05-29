@@ -14,7 +14,7 @@
     <img src="{{asset('logos/conecta.jpg')}}">
     <img src="{{asset('logos/fabrika.jpg')}}">
     <img src="{{asset('logos/loccamera.jpg')}}">
-
+{{   dd(public_path())}}
         <style>
             .table {
                 font-size: xx-small;

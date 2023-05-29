@@ -15,6 +15,10 @@ return [
     |
     */
 
+    'public_path' => public_path(),
+
+ 
+
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
