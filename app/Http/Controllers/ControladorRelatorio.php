@@ -453,11 +453,16 @@ class ControladorRelatorio extends Controller
 
             
             $ValorTotal = $ValorTotal->ValorTotal;
+            $css = "";
+            $css .= "";
 
             $ValorTotal = number_format($ValorTotal, 2, ',',".");
             return $pdf = Pdf::set_option('isHtml5ParserEnabled', true)
                             ->setPaper('a4', 'landscape')
-                            ->loadview('pdfs.pdf', ['cadastros' => $cadastros], ['ValorTotal' => $ValorTotal])
+                            ->loadview('pdfs.pdf', 
+                                ['cadastros' => $cadastros],
+                                ['ValorTotal' => $ValorTotal]
+                            )
                             ->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
 
         }

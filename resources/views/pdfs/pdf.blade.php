@@ -76,6 +76,11 @@
 
 <body>
 
+
+    {{-- Logos --}}
+
+    
+
     <h2> RELATÓRIO DE CONFERÊNCIA DE ENTRADA DE LOTE </h2>
 
     <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
