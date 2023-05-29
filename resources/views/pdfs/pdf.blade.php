@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/fontawesome/css/all.css')}}">
 
     <meta charset="utf-8">
-        <title> RELATÓRIO DE CONFERÊNCIA DE ENTRADA DE LOTE</title>
+    <title>  RELATÓRIO DE CONFERÊNCIA DE ENTRADA DE LOTE </h2></title>
 
         <style>
             .table {
@@ -66,7 +66,7 @@
 </head>
 
 
-<body border="1">
+<body>
 
     <h2> RELATÓRIO DE CONFERÊNCIA DE ENTRADA DE LOTE </h2>
 
@@ -83,7 +83,7 @@
 
 
 <!-- Mostra os dados no banco de dados -->
-   <table class="table">
+   <table class="table" style="border: solid black">
     <thead>
         <tr id="Cabecalho-tabela">
 
@@ -107,11 +107,6 @@
 
 
         </tr>
-
-        <tr> 
-            <td>R$Total,00</td>
-        </tr>
-
     </thead>
 
 
