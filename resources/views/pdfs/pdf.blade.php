@@ -9,11 +9,6 @@
     <meta charset="utf-8">
     <title>  RELATÓRIO DE CONFERÊNCIA DE ENTRADA DE LOTE </h2></title>
 
-    <img src="{{asset('storage/logos/cientik.jpg')}}">
-    {{-- {{dd(Storage::path('logos/cientik.jpg'))}} --}}
-    <img src="{{asset('logos/conecta.jpg')}}">
-    <img src="{{asset('logos/fabrika.jpg')}}">
-    <img src="{{asset('logos/loccamera.jpg')}}">
         <style>
             .table {
                 font-size: xx-small;
@@ -78,19 +73,23 @@
 <body>
 
 
-    {{-- Logos --}}
 
     
 
     <h2> RELATÓRIO DE CONFERÊNCIA DE ENTRADA DE LOTE </h2>
 
-    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/JQuery.js')}}"></script><!--Versão 3.1.0-->
-    <script type="text/javascript" src="{{asset('js/jquery-ui.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/jsPersonalizado.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/upper.js')}}"></script>
+    <br>
 
-    <script src="{{asset('js/Javascript.js')}}"></script>
+    <div id="imgs">
+        {{-- Logos --}}
+        <img src="{{base_path('public/logos/fabrika.jpg')}}" height="50" width="150" hspace="25" style="text-align: center">
+        <img src="{{base_path('public/logos/conecta.jpg') }}" height="50" width="150" hspace="25">
+        <img src="{{base_path('public/logos/kuarup.jpg')}}" height="50" width="150" hspace="25">
+        <img src="{{base_path('public/logos/loccamera.jpg')}}" height="50" width="150" hspace="25">
+        <img src="{{base_path('public/logos/cientik.jpg')}}" height="50" width="150" hspace="25">
+    </div>
+    <br>
+
 <div class="container-fluid" id="campo-pesquisa">
      
 
