@@ -23,6 +23,7 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                margin: 5% 0;
             }
             tr {
                 height: 100%;
