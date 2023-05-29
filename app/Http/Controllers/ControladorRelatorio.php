@@ -453,8 +453,6 @@ class ControladorRelatorio extends Controller
 
             
             $ValorTotal = $ValorTotal->ValorTotal;
-            $css = "";
-            $css .= "";
 
             $ValorTotal = number_format($ValorTotal, 2, ',',".");
             define("DOMPDF_ENABLE_REMOTE", true);
