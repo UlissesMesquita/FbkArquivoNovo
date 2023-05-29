@@ -11,12 +11,11 @@
     <link rel="stylesheet" href="{{asset('css/fontawesome/css/all.css')}}">
 
     <meta charset="utf-8">
-        <title>Relatório</title>
+        <title> RELATÓRIO DE CONFERÊNCIA DE ENTRADA DE LOTE</title>
 
         <style>
             .table {
                 font-size: xx-small;
-                border-collapse: collapse
 
             }
             td {
@@ -67,9 +66,9 @@
 </head>
 
 
-<body>
+<body border="1">
 
-    <h2> Relatório Geral </h2>
+    <h2> RELATÓRIO DE CONFERÊNCIA DE ENTRADA DE LOTE </h2>
 
     <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/JQuery.js')}}"></script><!--Versão 3.1.0-->
@@ -108,6 +107,11 @@
 
 
         </tr>
+
+        <tr> 
+            <td>R$Total,00</td>
+        </tr>
+
     </thead>
 
 
@@ -137,6 +141,10 @@
                 <td>{{$dashboard->Loc_Maco}}</td>
                 <td>{{$dashboard->Dt_Ref}}</td>  
                 <td>R${{$dashboard->Valor_Doc}}</td>
+            </tr>
+
+            <tr> 
+                <td>R$Total,00</td>
             </tr>
                     
 
