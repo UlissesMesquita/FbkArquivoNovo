@@ -16,7 +16,9 @@
         <style>
             .table {
                 font-size: xx-small;
-                border-collapse: collapse;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
 
             }
             td {
@@ -25,6 +27,7 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 margin: 5% 0;
+                text-align: center;
             }
             tr {
                 height: 100%;
@@ -61,6 +64,10 @@
                     background: #333;
             }
 
+            #total {
+                float: right;
+            }
+
         </style>
 
 
@@ -84,7 +91,7 @@
 
 
 <!-- Mostra os dados no banco de dados -->
-   <table class="table" style="border: solid black">
+   <table class="table" id="table-main "border="2">
     <thead>
         <tr id="Cabecalho-tabela">
 
@@ -100,7 +107,7 @@
             {{-- <th scope="col"><b>Assunto</b></th> --}}
             <th scope="col"><b>Nome Projeto</b></td>
             {{-- <th scope="col"><b>Local Arquivo</b></td> --}}
-            <th scope="col"><b>Estante</b></td>
+            {{-- <th scope="col"><b>Estante</b></td> --}}
             <th scope="col"><b>Caixa</b></td>
             <th scope="col"><b>Maço</b></td>
             <th scope="col"><b>Mês Referência</b></td>               
@@ -132,21 +139,23 @@
                 {{-- <td>{{$dashboard->Assunto}}</td> --}}
                 <td>{{$dashboard->nome_job}}</td>
                 {{-- <td>{{$dashboard->Loc_Arquivo}}</td> --}}
-                <td>{{$dashboard->Loc_Est}}</td>
+                {{-- <td>{{$dashboard->Loc_Est}}</td> --}}
                 <td>{{$dashboard->Loc_Box_Eti}}</td>
                 <td>{{$dashboard->Loc_Maco}}</td>
                 <td>{{$dashboard->Dt_Ref}}</td>  
                 <td>R${{$dashboard->Valor_Doc}}</td>
-            </tr>
-
-            <tr> 
-                <td>R$Total,00</td>
-            </tr>
-                    
 
             </tr>
         @endforeach
+
+        
+
     </tbody>
+</table>
+<br>
+<table border="2" id="total">
+    <th scope="col"> TOTAL </td>
+        <td style="color: red">R$ {{$ValorTotal}}</td>
 </table>
 <footer>
     <b>©Controle de Arquivo Fabrika</b> Versão 1.0
