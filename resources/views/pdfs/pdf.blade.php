@@ -16,6 +16,7 @@
         <style>
             .table {
                 font-size: xx-small;
+                border-collapse: collapse;
 
             }
             td {
