@@ -461,7 +461,7 @@ class ControladorRelatorio extends Controller
                                  ['cadastros' => $cadastros],
                                  ['valorTotal' => $valorTotal]
                             )
-                            ->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
+                            ->download('Relatorio_de_Conferencia_'.date("d-m-Y__H-i").'.pdf');
 
         }
         catch (\Exception $e){
