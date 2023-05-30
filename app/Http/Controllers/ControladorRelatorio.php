@@ -449,19 +449,34 @@ class ControladorRelatorio extends Controller
     
         try{
             $cadastros = Cadastro_Documentos::wherein('id_codigo', $dashIds)->get();
-            $valorTotal = Cadastro_Documentos::selectRaw('SUM(Valor_Doc) as valorTotal')->wherein('id_codigo', $dashIds)->first();
+            //valorTotal = Cadastro_Documentos::selectRaw('SUM(Valor_Doc) as valorTotal')->wherein('id_codigo', $dashIds)->first();
 
-            $valorTotal = $valorTotal->valorTotal;
+            //$soma = $cadastros->Valor_Doc;
 
-            $valorTotal = number_format($valorTotal, 2, ',',".");
-            //return view('pdfs.pdf', compact('cadastros', 'valorTotal', 'contador'));
-             return $pdf = Pdf::set_option('isHtml5ParserEnabled', false)
-                            ->setPaper('a4', 'landscape')
-                            ->loadview('pdfs.pdf', 
-                                 ['cadastros' => $cadastros],
-                                 ['valorTotal' => $valorTotal]
-                            )
-                            ->download('Relatorio_de_Conferencia_'.date("d-m-Y__H-i").'.pdf');
+            for($i=0; $i < count($cadastros); $i++) { 
+        
+                $valor[] = (double)$cadastros[$i]->Valor_Doc;
+                
+            }
+
+            //dd($valor);
+
+
+            //$valorTotal = $valorTotal->valorTotal;
+                $soma = array_sum($valor);
+                //dd($soma);
+            //$valorTotal = number_format($soma ,2,",",".");
+
+
+
+            //return view('pdfs.pdf', compact('cadastros', 'soma'));
+              return $pdf = Pdf::set_option('isHtml5ParserEnabled', false)
+                             ->setPaper('a4', 'landscape')
+                             ->loadview('pdfs.pdf', 
+                                  ['cadastros' => $cadastros],
+                                  ['soma' => $soma]
+                             )
+                             ->download('Relatorio_de_Conferencia_'.date("d-m-Y__H-i").'.pdf');
 
         }
         catch (\Exception $e){
