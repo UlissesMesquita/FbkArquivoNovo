@@ -162,9 +162,10 @@
 </table>
 <br>
 <table border="2" id="total">
+{{--     
     <th scope="col"> TOTAL </td>
+    <td style="color: red">R$ {{$soma}}</td> --}}
 
-        {{-- <td style="color: red">R$ {{$soma}}</td> --}}
 </table>
 <footer>
     <b>©Controle de Arquivo Fabrika</b> Versão 1.0
