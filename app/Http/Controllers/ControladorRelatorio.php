@@ -451,24 +451,6 @@ class ControladorRelatorio extends Controller
             $cadastros = Cadastro_Documentos::wherein('id_codigo', $dashIds)->get();
             //valorTotal = Cadastro_Documentos::selectRaw('SUM(Valor_Doc) as valorTotal')->wherein('id_codigo', $dashIds)->first();
 
-            //$soma = $cadastros->Valor_Doc;
-
-            for($i=0; $i < count($cadastros); $i++) { 
-        
-                $valor[] = (double)$cadastros[$i]->Valor_Doc;
-                
-            }
-
-            //dd($valor);
-
-
-            //$valorTotal = $valorTotal->valorTotal;
-            //$soma = array_sum($valor);
-            //var_dump($soma);
-            //$valorTotal = number_format($soma, 2, ",",".");
-
-
-
             //return view('pdfs.pdf', compact('cadastros', 'soma'));
             return $pdf = Pdf::set_option('isHtml5ParserEnabled', false)
                               ->setPaper('a4', 'landscape')
