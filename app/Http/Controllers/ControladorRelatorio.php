@@ -463,20 +463,20 @@ class ControladorRelatorio extends Controller
 
 
             //$valorTotal = $valorTotal->valorTotal;
-            $soma = array_sum($valor);
-            var_dump($soma);
+            //$soma = array_sum($valor);
+            //var_dump($soma);
             //$valorTotal = number_format($soma, 2, ",",".");
 
 
 
-            return view('pdfs.pdf', compact('cadastros', 'soma'));
-            //   return $pdf = Pdf::set_option('isHtml5ParserEnabled', false)
-            //                  ->setPaper('a4', 'landscape')
-            //                  ->loadview('pdfs.pdf', 
-            //                       ['cadastros' => $cadastros],
-            //                       ['valorTotal' => $valorTotal]
-            //                  )
-            //                  ->download('Relatorio_de_Conferencia_'.date("d-m-Y__H-i").'.pdf');
+            //return view('pdfs.pdf', compact('cadastros', 'soma'));
+            return $pdf = Pdf::set_option('isHtml5ParserEnabled', false)
+                              ->setPaper('a4', 'landscape')
+                              ->loadview('pdfs.pdf', 
+                                   ['cadastros' => $cadastros]
+                                //    ['valorTotal' => $valorTotal]
+                              )
+                              ->download('Relatorio_de_Conferencia_'.date("d-m-Y__H-i").'.pdf');
 
         }
         catch (\Exception $e){
