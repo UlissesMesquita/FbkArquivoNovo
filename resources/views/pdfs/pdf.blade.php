@@ -23,7 +23,7 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 margin: 5% 0;
-                text-align: center;
+                text-align: left;
             }
             tr {
                 height: 100%;
@@ -160,6 +160,7 @@
 <br>
 <table border="2" id="total">
     <th scope="col"> TOTAL </td>
+
         <td style="color: red">R$ {{$valorTotal}}</td>
 </table>
 <footer>
