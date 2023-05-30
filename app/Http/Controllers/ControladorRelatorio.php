@@ -449,20 +449,17 @@ class ControladorRelatorio extends Controller
     
         try{
             $cadastros = Cadastro_Documentos::wherein('id_codigo', $dashIds)->get();
-            $ValorTotal = Cadastro_Documentos::selectRaw('SUM(Valor_Doc) as ValorTotal')->wherein('id_codigo', $dashIds)->first();
+            $valorTotal = Cadastro_Documentos::selectRaw('SUM(Valor_Doc) as valorTotal')->wherein('id_codigo', $dashIds)->first();
 
-            
-            $ValorTotal = $ValorTotal->ValorTotal;
+            $valorTotal = $valorTotal->valorTotal;
 
-            $ValorTotal = number_format($ValorTotal, 2, ',',".");
-            // define("DOMPDF_ENABLE_PHP", true);
-            define("DOMPDF_ENABLE_REMOTE", false);
-            //return view('pdfs.pdf', compact('cadastros', 'ValorTotal'));
+            $valorTotal = number_format($valorTotal, 2, ',',".");
+            //return view('pdfs.pdf', compact('cadastros', 'valorTotal', 'contador'));
              return $pdf = Pdf::set_option('isHtml5ParserEnabled', false)
                             ->setPaper('a4', 'landscape')
                             ->loadview('pdfs.pdf', 
                                  ['cadastros' => $cadastros],
-                                 ['ValorTotal' => $ValorTotal]
+                                 ['valorTotal' => $valorTotal]
                             )
                             ->download('Relatorio_Geral_'.date("d-m-Y__H-i").'.pdf');
 

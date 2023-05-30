@@ -93,7 +93,7 @@
 <div class="container-fluid" id="campo-pesquisa">
      
 
-
+    <h5> Registros Encontrados: {{count($cadastros)}} </h5>
 
 <!-- Mostra os dados no banco de dados -->
    <table class="table" id="table-main "border="2">
@@ -160,7 +160,7 @@
 <br>
 <table border="2" id="total">
     <th scope="col"> TOTAL </td>
-        <td style="color: red">R$ {{$ValorTotal}}</td>
+        <td style="color: red">R$ {{$valorTotal}}</td>
 </table>
 <footer>
     <b>©Controle de Arquivo Fabrika</b> Versão 1.0
