@@ -7,7 +7,7 @@
 
 
     <meta charset="utf-8">
-    <title>  RELATÓRIO DE CONFERÊNCIA DE ENTRADA DE LOTE </h2></title>
+    <title>  RELATÓRIO DE CONFERÊNCIA DE ENTRADA DE LOTE</title>
 
         <style>
             .table {
