@@ -5,7 +5,7 @@
 @endsection
 
 @section('titulo')
-    Relatório Geral
+    RELATÓRIO DE CONFERÊNCIA DE ENTRADA DE LOTE
 @endsection
 
 @section('conteudo')
