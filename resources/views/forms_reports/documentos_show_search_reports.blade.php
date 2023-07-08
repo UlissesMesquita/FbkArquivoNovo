@@ -29,7 +29,7 @@
                 <th scope="col"><b>Emitente</b></td>
                 <th scope="col"><b>Destinatária</b></th>
                 <th scope="col"><b>Departamento</b></th>    
-                <th scope="col"><b>Tipo Documento</b></td>
+                <th scope="col"><b>Tp Doc</b></td>
                 <th scope="col"><b>Nº Documento</b></td>
                 <th scope="col"><b>Palavra Chave</b></td>
                 <th scope="col"><b>Tipo projeto</b></td>
@@ -39,7 +39,7 @@
                 <th scope="col"><b>Estante</b></td>
                 <th scope="col"><b>Caixa</b></td>
                 <th scope="col"><b>Maço</b></td>
-                <th scope="col"><b>Mês Referência</b></td>               
+                <th scope="col"><b>Mês Ref</b></td>               
                 <th scope="col"><b>Valor</b></td>
 
                 <th scope="col">Ferramentas</th>

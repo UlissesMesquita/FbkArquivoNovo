@@ -11,7 +11,7 @@
 
         <style>
             .table {
-                font-size: xx-small;
+                font-size: 2mm;
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
@@ -118,7 +118,8 @@
             {{-- <th scope="col"><b>Estante</b></td> --}}
             <th scope="col"><b>Caixa</b></td>
             <th scope="col"><b>Maço</b></td>
-            <th scope="col"><b>Mês Referência</b></td>               
+            <th scope="col"><b>Mês Referência</b></td>
+            <th scope="col"><b>Desfaz</b></td>                
             <th scope="col"><b>Valor</b></td>
 
 
@@ -150,7 +151,8 @@
                 {{-- <td>{{$dashboard->Loc_Est}}</td> --}}
                 <td>{{$dashboard->Loc_Box_Eti}}</td>
                 <td>{{$dashboard->Loc_Maco}}</td>
-                <td>{{$dashboard->Dt_Ref}}</td>  
+                <td>{{$dashboard->Dt_Ref}}</td>
+                <td>{{$dashboard->Desfaz}}</td>  
                 <td id="valor">R${{$dashboard->Valor_Doc}}</td>
 
             </tr>
