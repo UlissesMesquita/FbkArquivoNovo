@@ -233,7 +233,7 @@ class ControladorRelatorio extends Controller
                     else {
                         $dash = Cadastro_Documentos::where('Dep', '=', session()->get('departamento'))->where($dados)->whereBetween('data', [$data_in, $data_out])->Paginate(200);
                         $contador = $dash->count();
-                        dd($dash);
+				//dd($dash);
                     }
 
                 }
