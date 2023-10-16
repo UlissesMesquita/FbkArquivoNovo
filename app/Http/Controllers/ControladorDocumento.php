@@ -13,9 +13,10 @@ use App\Job;
 use App\Caixa_Departamento;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use http\Header;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+
 
 class ControladorDocumento extends Controller
 {
@@ -328,6 +329,11 @@ public function edit_clone(Request $request, $id) {
             $doc->nome_job = $request->input('nome_job');
             $doc->Nome_Doc = $request->input('Nome_Doc');
             $doc->Valor_Doc = $request->input('Valor_Doc');
+
+            $doc->Valor_Doc = str_replace('.', '', $doc->Valor_Doc); // Remover separador de milhar
+            $doc->Valor_Doc = str_replace(',', '.', $doc->Valor_Doc); // Substituir vírgula por ponto
+            $doc->Valor_Doc = floatval($doc->Valor_Doc);
+
             $doc->Dt_Ref = $request->input('Dt_Ref');
             $doc->Desfaz = $request->input('Desfaz');
             $doc->Loc_Arquivo = $request->input('Loc_Arquivo');
@@ -338,7 +344,9 @@ public function edit_clone(Request $request, $id) {
             $doc->Origem = $request->input('Origem');
             $doc->Loc_Cor = $request->input('Loc_Cor');
             $doc->Loc_Est = $request->input('Loc_Est');
-            $doc->Loc_Box_Eti = $request->input('Loc_Box_Eti');
+
+            $doc->Loc_Box_Eti = $request->input('Loc_Box_Eti') ? null: 'N/A';
+            
             $doc->Loc_Maco = $request->input('Loc_Maco');
             $doc->Loc_Status = $request->input('Loc_Status');
             $doc->Loc_Obs = $request->input('Loc_Obs');
@@ -395,6 +403,15 @@ public function edit_clone(Request $request, $id) {
             $doc->nome_job = $request->input('nome_job');
             $doc->Nome_Doc = $request->input('Nome_Doc');
             $doc->Valor_Doc = $request->input('Valor_Doc');
+        
+            //dd(floatval($doc->Valor_Doc), 2);
+
+            $doc->Valor_Doc = str_replace('.', '', $doc->Valor_Doc); // Remover separador de milhar
+            $doc->Valor_Doc = str_replace(',', '.', $doc->Valor_Doc); // Substituir vírgula por ponto
+            $doc->Valor_Doc = floatval($doc->Valor_Doc);
+
+            //dd($doc->Valor_Doc);
+            
             $doc->Dt_Ref = $request->input('Dt_Ref');
             $doc->Desfaz = $request->input('Desfaz');
             $doc->Loc_Arquivo = $request->input('Loc_Arquivo');
@@ -405,7 +422,7 @@ public function edit_clone(Request $request, $id) {
             $doc->Origem = $request->input('Origem');
             $doc->Loc_Cor = $request->input('Loc_Cor');
             $doc->Loc_Est = $request->input('Loc_Est');
-            $doc->Loc_Box_Eti = $request->input('Loc_Box_Eti');
+            $doc->Loc_Box_Eti = $request->input('Loc_Box_Eti') ? null: 'N/A';
             // $doc->Loc_Box_Eti_ADM = $request->input('Loc_Box_Eti_ADM');
             // $doc->Loc_Box_Eti_Diretoria = $request->input('Loc_Box_Eti_Diretoria');
             // $doc->Loc_Box_Eti_Producao = $request->input('Loc_Box_Eti_Producao');
