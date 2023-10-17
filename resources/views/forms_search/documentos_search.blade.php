@@ -488,9 +488,10 @@
                     <td>{{$dashboard->Loc_Box_Eti}}</td>
                     <td>{{$dashboard->Loc_Maco}}</td>
                     <td>{{$dashboard->Dt_Ref}}</td>  
-                    <td>R${{$dashboard->Valor_Doc}}</td>
+                    <td id="Valor_Doc">{{formatarParaReal($dashboard->Valor_Doc)}}</td>
 
                 <td>
+                
                     
 
                             <!-- Botão de Editar -->
@@ -523,7 +524,18 @@
         @endforeach
     </tbody>
 </table>
+<script>
+$(document).ready(function() {
+  $('table td#Valor_Doc').each(function() {
+    var number = parseFloat($(this).text());
+    if (!isNaN(number)) {
+      var formattedNumber = number.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      $(this).text(formattedNumber);
+    }
+  });
+});
 
+</script>
 
 @endsection
 
