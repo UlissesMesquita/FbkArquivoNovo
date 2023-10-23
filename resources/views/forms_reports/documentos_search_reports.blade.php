@@ -499,26 +499,16 @@
                         <td>R${{$dashboard->Valor_Doc}}</td>
                     
                         <td>
-                            <!-- Botão de Editar -->
-                            @if(session()->get('departamento') == $dashboard->Dep || session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA')
-                                <a id="edit-icon" style="color:green" class="far fa-edit fa-2x" href="/dashboard/documentos_edit/{{$dashboard->id_codigo}}" method="GET" onclick=""></a>
-                            @endif
-
-                                <!-- Botão de Clonar -->
-                            @if(session()->get('departamento') == $dashboard->Dep || session()->get('permissao') == 'Operador' || session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA')
-                                <a id="clone-icon" style="color:gray" class="far fa-copy fa-2x" href="/documento/edit_clone/{{$dashboard->id_codigo}}" method="GET" onclick=""></a>
-                            @endif
-                        
-                            <!-- Botão de Apagar -->
-                            @if(session()->get('permissao') == 'Admin')
-                                <a id="delete-icon" style="color:red" class="fas fa-trash fa-2x" href="/dashboard/delete/{{$dashboard->id_codigo}}" onclick="return confirm('Deseja realmente excluir?')" method="GET"></a>
-                            @endif
-
                             <!-- Botão de Anexo -->
                             @if(session()->get('departamento') == $dashboard->Dep || session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA')
-                                <a type="submit"href="documento/anexo/{{$dashboard->id_codigo}}" class="btn btn-link" target="_blank"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></a>
+                            {{-- {{dd($anexo->id_upload_codigo)}} --}}
+
+                                @foreach($anexos as $anexo) 
+                                    @if($dashboard->id_codigo == $anexo->id_upload)
+                                        <a type="submit"href="documento/anexo/{{$dashboard->id_codigo}}" class="btn btn-link" target="_blank"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></a>
+                                    @endif
+                                @endforeach
                             @endif
-                            
                         </td>
                     </tr>
                             

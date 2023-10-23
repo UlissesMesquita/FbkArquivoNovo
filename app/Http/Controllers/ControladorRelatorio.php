@@ -9,6 +9,7 @@ use App\Departamentos;
 use App\Pesquisas;
 use App\Job;
 use App\TipoDocumento;
+use App\Upload;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -48,7 +49,6 @@ class ControladorRelatorio extends Controller
                 //$dash = Cadastro_Documentos::all()->where('Dep' ,'=', session()->get('departamento'))->sortByDesc('id_codigo');
                 
             }
-
             
             $tp_documento = TipoDocumento::orderBy('tp_documento', 'ASC')->get();
             $job = Job::orderBy('nome_job', 'ASC')->get();
@@ -152,10 +152,12 @@ class ControladorRelatorio extends Controller
             ->where('cad_departamento', '=', 'OUTROS')
             ->get();    
 
+            $anexos = Upload::all();
 
             
             return view('forms_reports/documentos_search_reports', compact(
             'contador',
+            'anexos',
             'tp_documento',
             'emit', 
             'dest', 

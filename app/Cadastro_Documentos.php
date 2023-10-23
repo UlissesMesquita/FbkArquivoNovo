@@ -18,7 +18,7 @@ class Cadastro_Documentos extends Model
     public $table = 'cadastro__documentos';
     
     public function uploads() {
-        return $this->hasMany('App\Upload', 'id_upload_codigo'); 
+        return $this->hasMany(Upload::class, 'id_upload_codigo'); 
     }
 
 }
