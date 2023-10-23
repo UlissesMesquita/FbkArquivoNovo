@@ -511,7 +511,11 @@
 
                             <!-- Botão de Anexo -->
                             @if(session()->get('departamento') == $dashboard->Dep || session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA')
-                                <a type="submit"href="documento/anexo/{{$dashboard->id_codigo}}" class="btn btn-link" target="_blank"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></a>
+                                @foreach($anexos as $anexo) 
+                                    @if($dashboard->id_codigo == $anexo->id_upload_codigo)
+                                        <a type="submit"href="documento/anexo/{{$dashboard->id_codigo}}" class="btn btn-link" target="_blank"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></a>
+                                    @endif
+                                @endforeach
                             @endif
                       
  

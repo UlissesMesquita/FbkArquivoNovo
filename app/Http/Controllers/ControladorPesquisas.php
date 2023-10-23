@@ -9,6 +9,7 @@ use App\Departamentos;
 use App\Pesquisas;
 use App\Job;
 use App\TipoDocumento;
+use App\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -154,9 +155,11 @@ class ControladorPesquisas extends Controller
             ->get();    
 
 
+            $anexos = Upload::select('id_upload_codigo')->distinct()->get();
             
             return view('forms_search/documentos_search', compact(
             'contador',
+            'anexos',
             'tp_documento',
             'emit', 
             'dest', 
@@ -261,7 +264,7 @@ class ControladorPesquisas extends Controller
                     else {
                         $dash = Cadastro_Documentos::where('Dep', '=', session()->get('departamento'))->where($dados)->whereBetween('data', [$data_in, $data_out])->Paginate(50);
                         $contador = $dash->count();
-                        dd($dash);
+                        // dd($dash);
                     }
 
                 }
@@ -377,7 +380,7 @@ class ControladorPesquisas extends Controller
 
                //dd($dash);
 
-            
+               $anexos = Upload::select('id_upload_codigo')->distinct()->get();
                 
                     if ($contador == null && $dash == null && $dados == null) {
                         $contador = 0;
@@ -385,6 +388,7 @@ class ControladorPesquisas extends Controller
                         return view('forms_search/documentos_search', compact(
                             'tp_documento',
                             'dest',
+                            'anexos',
                             'emit',
                             'dash',
                             'job',
@@ -413,6 +417,7 @@ class ControladorPesquisas extends Controller
                         return view('forms_search/documentos_search', compact(
                             'tp_documento',
                             'dest',
+                            'anexos',
                             'emit',
                             'dash',
                             'job',
