@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/cabecalho.css')}}">
     <link rel="stylesheet" href="{{asset('css/Stylesheet.css')}}">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
 
     <link rel="stylesheet" href="{{asset('css/fontawesome/css/all.css')}}">
 
