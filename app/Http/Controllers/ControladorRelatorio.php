@@ -351,7 +351,7 @@ class ControladorRelatorio extends Controller
 
                //dd($request);
 
-            
+                    $anexos = Upload::select('id_upload_codigo')->distinct()->get();
                 
                     if ($contador == null && $dash == null && $dados == null) {
                         $contador = 0;
@@ -360,6 +360,7 @@ class ControladorRelatorio extends Controller
                             'tp_documento',
                              'dest',
                              'emit',
+                             'anexos',
                              'dash',
                              'job',
                              'contador',
@@ -384,6 +385,7 @@ class ControladorRelatorio extends Controller
                              'dados',
                              'tp_documento',
                              'dest',
+                             'anexos',
                              'emit',
                              'dash',
                              'job',
@@ -414,6 +416,7 @@ class ControladorRelatorio extends Controller
                             'dados',
                             'tp_documento',
                             'dest',
+                            'anexos',
                             'emit',
                             'dash',
                             'job',
