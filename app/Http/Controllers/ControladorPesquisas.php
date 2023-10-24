@@ -34,8 +34,7 @@ class ControladorPesquisas extends Controller
                 //Query para utilização sem paginação
                     //$dash = Cadastro_Documentos::all()->sortByDesc('id_codigo');
                 //Query para apaginação
-                $dash = Cadastro_Documentos::select('data', 'id_codigo', 'Emp_Emit', 'Emp_Dest', 'Dep', 'tp_documento', 'Nome_Doc', 'Palavra_Chave', 'Tp_Projeto', 'Assunto', 'nome_job', 'Loc_Arquivo','Loc_Est', 'Loc_Box_Eti', 'Loc_Maco','Dt_Ref', 'Desfaz', 'Valor_Doc'
-                )->orderBy('id_codigo', 'DESC')->Paginate(50);
+                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->Paginate(100);
                 //dd($dash);
                 //$dash = Cadastro_Documentos::paginate();
 
@@ -43,8 +42,7 @@ class ControladorPesquisas extends Controller
             }
             else {
                 //Query para utilização com paginação
-                $dash = Cadastro_Documentos::select('data', 'id_codigo', 'Emp_Emit', 'Emp_Dest', 'Dep', 'tp_documento', 'Nome_Doc', 'Palavra_Chave', 'Tp_Projeto', 'Assunto', 'nome_job', 'Loc_Arquivo','Loc_Est', 'Loc_Box_Eti', 'Loc_Maco','Dt_Ref', 'Desfaz', 'Valor_Doc'
-                )->orderBy('id_codigo', 'DESC')->where('Dep' ,'=', session()->get('departamento'))->Paginate(200);
+                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->where('Dep' ,'=', session()->get('departamento'))->Paginate(100);
 
                 
 
