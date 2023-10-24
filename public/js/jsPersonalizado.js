@@ -58,15 +58,6 @@
 }
 
 
-// function formatarParaReal(valor) {
-//   return valor.toLocaleString('pt-BR', {
-//     style: 'currency',
-//     currency: 'BRL',
-//   });
-// }
-
-
-
   //Função esconde e mostra valor Job Documentos
   function mostra(id){
     var valor = "JOB"
