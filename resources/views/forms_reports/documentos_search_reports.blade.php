@@ -14,7 +14,7 @@
 <div class="container-fluid" id="campo-pesquisa">
      
 
-    {{-- <form class="form-horizontal" name="form" method="POST" action="{{route('gerar_relatorio')}}" enctype="multipart/form-data">
+    <form class="form-horizontal" name="form" method="POST" action="{{route('gerar_relatorio')}}" enctype="multipart/form-data">
         
         @csrf
 
@@ -417,7 +417,7 @@
                     <button id="Cancelar" name="Cancelar" class="btn btn-lg btn-danger" type="Reset">Limpar</button>
                     </div>
                 </div>
-            </form> --}}
+            </form>
 
         <br>
 
