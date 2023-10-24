@@ -348,7 +348,7 @@ public function edit_clone(Request $request, $id) {
             // $doc->Loc_Box_Eti = $request->input('Loc_Box_Eti') ? null: 'N/A';
             
             $doc->Loc_Box_Eti = $request->input('Loc_Box_Eti');
-            
+
             $doc->Loc_Maco = $request->input('Loc_Maco');
             $doc->Loc_Status = $request->input('Loc_Status');
             $doc->Loc_Obs = $request->input('Loc_Obs');
@@ -422,7 +422,7 @@ public function edit_clone(Request $request, $id) {
             $doc->Origem = $request->input('Origem');
             $doc->Loc_Cor = $request->input('Loc_Cor');
             $doc->Loc_Est = $request->input('Loc_Est');
-            $doc->Loc_Box_Eti = $request->input('Loc_Box_Eti') ? null: 'N/A';
+            $doc->Loc_Box_Eti = $request->input('Loc_Box_Eti');
             // $doc->Loc_Box_Eti_ADM = $request->input('Loc_Box_Eti_ADM');
             // $doc->Loc_Box_Eti_Diretoria = $request->input('Loc_Box_Eti_Diretoria');
             // $doc->Loc_Box_Eti_Producao = $request->input('Loc_Box_Eti_Producao');
