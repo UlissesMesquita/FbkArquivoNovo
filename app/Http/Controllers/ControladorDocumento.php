@@ -345,7 +345,9 @@ public function edit_clone(Request $request, $id) {
             $doc->Loc_Cor = $request->input('Loc_Cor');
             $doc->Loc_Est = $request->input('Loc_Est');
 
-            $doc->Loc_Box_Eti = $request->input('Loc_Box_Eti') ? null: 'N/A';
+            // $doc->Loc_Box_Eti = $request->input('Loc_Box_Eti') ? null: 'N/A';
+            
+            $doc->Loc_Box_Eti = $request->input('Loc_Box_Eti');
             
             $doc->Loc_Maco = $request->input('Loc_Maco');
             $doc->Loc_Status = $request->input('Loc_Status');
