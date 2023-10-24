@@ -330,9 +330,9 @@ public function edit_clone(Request $request, $id) {
             $doc->Nome_Doc = $request->input('Nome_Doc');
             $doc->Valor_Doc = $request->input('Valor_Doc');
 
-            $doc->Valor_Doc = str_replace('.', '', $doc->Valor_Doc); // Remover separador de milhar
-            $doc->Valor_Doc = str_replace(',', '.', $doc->Valor_Doc); // Substituir vírgula por ponto
-            $doc->Valor_Doc = floatval($doc->Valor_Doc);
+            // $doc->Valor_Doc = str_replace('.', '', $doc->Valor_Doc); // Remover separador de milhar
+            // $doc->Valor_Doc = str_replace(',', '.', $doc->Valor_Doc); // Substituir vírgula por ponto
+            // $doc->Valor_Doc = floatval($doc->Valor_Doc);
 
             $doc->Dt_Ref = $request->input('Dt_Ref');
             $doc->Desfaz = $request->input('Desfaz');

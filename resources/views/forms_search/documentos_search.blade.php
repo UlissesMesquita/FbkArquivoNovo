@@ -488,7 +488,7 @@
                     <td>{{$dashboard->Loc_Box_Eti}}</td>
                     <td>{{$dashboard->Loc_Maco}}</td>
                     <td>{{$dashboard->Dt_Ref}}</td>  
-                    <td id="Valor_Doc">{{$dashboard->Valor_Doc}}</td>
+                    <td id="Valor_Doc">R${{$dashboard->Valor_Doc}}</td>
 
                 <td>
                 
