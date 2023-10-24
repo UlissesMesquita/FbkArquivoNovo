@@ -26,9 +26,9 @@ class ControladorRelatorio extends Controller
         if(session()->get('autenticado') == 1) {
             
             
-            $emit = Empresas_Emitentes::orderBy('cad_emitentes', 'ASC')->get();
-            $dep = Departamentos::orderBy('cad_departamento', 'ASC')->get();
-            $dest = Empresas_Destinatarias::orderBy('cad_destinatarias', 'ASC')->get();
+            $emit = Empresas_Emitentes::select('id_empresa_emitente', 'cad_emitentes')->orderBy('cad_emitentes', 'ASC')->get();
+            $dep = Departamentos::select('id_departamento', 'cad_departamento')->orderBy('cad_departamento', 'ASC')->get();
+            $dest = Empresas_Destinatarias::select('id_empresa_destinataria', 'cad_destinatarias')->orderBy('cad_destinatarias', 'ASC')->get();
             if(session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA') {
                 //Query para utilização sem paginação
                     //$dash = Cadastro_Documentos::all()->sortByDesc('id_codigo');
@@ -50,10 +50,10 @@ class ControladorRelatorio extends Controller
                 
             }
             
-            $tp_documento = TipoDocumento::orderBy('tp_documento', 'ASC')->get();
-            $job = Job::orderBy('nome_job', 'ASC')->get();
-            $criado = Cadastro_Documentos::orderBy('criado_por', 'ASC')->distinct()->whereNotNull('criado_por')->get('criado_por'); 
-            $editado = Cadastro_Documentos::orderBy('editado_por','ASC')->distinct()->whereNotNull('editado_por')->get('editado_por');
+            $tp_documento = TipoDocumento::select('id_tp_documento', 'tp_documento')->orderBy('tp_documento', 'ASC')->get();
+            $job = Job::select('id_job', 'nome_job')->orderBy('nome_job', 'ASC')->get();
+            // $criado = Cadastro_Documentos::orderBy('criado_por', 'ASC')->distinct()->whereNotNull('criado_por')->get('criado_por');
+            // $editado = Cadastro_Documentos::orderBy('editado_por','ASC')->distinct()->whereNotNull('editado_por')->get('editado_por');
 
             if(session()->get('permissao') == 'Admin' || session()->get('departamento') == 'DIRETORIA') {
                 $contador = Cadastro_Documentos::whereNotNull('id_codigo')->count();
@@ -163,8 +163,8 @@ class ControladorRelatorio extends Controller
             'dest', 
             'dash',
             'job',
-            'criado',
-            'editado',
+            // 'criado',
+            // 'editado',
             'dep',
             'caixa_departamento_Financeiro',
             'caixa_departamento_Diretoria',
