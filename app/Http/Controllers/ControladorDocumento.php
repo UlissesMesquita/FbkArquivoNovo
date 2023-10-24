@@ -406,9 +406,9 @@ public function edit_clone(Request $request, $id) {
         
             //dd(floatval($doc->Valor_Doc), 2);
 
-            $doc->Valor_Doc = str_replace('.', '', $doc->Valor_Doc); // Remover separador de milhar
-            $doc->Valor_Doc = str_replace(',', '.', $doc->Valor_Doc); // Substituir vírgula por ponto
-            $doc->Valor_Doc = floatval($doc->Valor_Doc);
+            // $doc->Valor_Doc = str_replace('.', '', $doc->Valor_Doc); // Remover separador de milhar
+            // $doc->Valor_Doc = str_replace(',', '.', $doc->Valor_Doc); // Substituir vírgula por ponto
+            // $doc->Valor_Doc = floatval($doc->Valor_Doc);
             
             $doc->Dt_Ref = $request->input('Dt_Ref');
             $doc->Desfaz = $request->input('Desfaz');
@@ -445,7 +445,9 @@ public function edit_clone(Request $request, $id) {
             //Verifica se "null" ou "vazio"
             //Se verdadeiro = salva como processamento e salva
             if (is_null($request->anexo) || empty($request->anexo)) {
+                
                 $doc->Loc_Status = 'Em Processamento';
+                
                 $doc->save();
             }
             else {
