@@ -33,7 +33,7 @@ class ControladorRelatorio extends Controller
                 //Query para utilização sem paginação
                     //$dash = Cadastro_Documentos::all()->sortByDesc('id_codigo');
                 //Query para apaginação
-                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->limite(200)->Paginate(200);
+                $dash = Cadastro_Documentos::orderBy('id_codigo', 'DESC')->limit(200)->Paginate(200);
                 //dd($dash);
                 //$dash = Cadastro_Documentos::paginate();
                 
