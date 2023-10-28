@@ -159,7 +159,6 @@ class ControladorRelatorio extends Controller
             ->get();    
 
             $anexos = Upload::select('id_upload_codigo')->distinct()->limit(100)->first();
-dd($anexos);
             
             return view('forms_reports/documentos_search_reports', compact(
             'contador',
