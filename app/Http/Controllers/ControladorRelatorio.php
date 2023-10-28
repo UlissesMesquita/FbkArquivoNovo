@@ -358,7 +358,7 @@ class ControladorRelatorio extends Controller
                //dd($request);
 
                $anexos = Upload::select('id_upload_codigo')->distinct()->limit(100)->get();
-                
+                dd($anexos);
                     if ($contador == null && $dash == null && $dados == null) {
                         $contador = 0;
 
