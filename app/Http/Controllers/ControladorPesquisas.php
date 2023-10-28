@@ -159,7 +159,7 @@ class ControladorPesquisas extends Controller
             ->where('cad_departamento', '=', 'OUTROS')
             ->get();    
 
-            $anexos = Upload::select('id_upload_codigo')->distinct()->limit(100)->get();
+            $anexos = Upload::select('id_upload_codigo')->groupBy('id_upload_codigo')->orderBy('id_upload_codigo', 'desc')->paginate(100);
 
             
             return view('forms_search/documentos_search', compact(
@@ -385,7 +385,7 @@ class ControladorPesquisas extends Controller
 
                //dd($dash);
 
-               $anexos = Upload::select('id_upload_codigo')->distinct()->limit(100)->get();
+               $anexos = Upload::select('id_upload_codigo')->groupBy('id_upload_codigo')->orderBy('id_upload_codigo', 'desc')->paginate(100);
                 
                     if ($contador == null && $dash == null && $dados == null) {
                         $contador = 0;
