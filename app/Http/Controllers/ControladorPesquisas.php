@@ -159,7 +159,7 @@ class ControladorPesquisas extends Controller
             ->where('cad_departamento', '=', 'OUTROS')
             ->get();    
 
-            $anexos = Upload::select('id_upload_codigo')->distinct()->get();
+            $anexos = Upload::select('id_upload_codigo')->distinct()->limit(100)->get();
 
             
             return view('forms_search/documentos_search', compact(
