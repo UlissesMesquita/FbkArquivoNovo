@@ -158,7 +158,7 @@ class ControladorRelatorio extends Controller
             ->where('cad_departamento', '=', 'OUTROS')
             ->get();    
 
-            $anexos = Upload::select('id_upload_codigo')->Paginate(100)->distinct()->get();
+            $anexos = Upload::select('id_upload_codigo')->Paginate(100)->orderBy('id_upload_codigo')->get();
 
             
             return view('forms_reports/documentos_search_reports', compact(
