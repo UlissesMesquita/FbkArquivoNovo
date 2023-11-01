@@ -11,6 +11,7 @@ use App\Upload;
 use App\TipoDocumento;
 use App\Job;
 use App\Caixa_Departamento;
+use App\Http\Requests\CreateUpdateUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -182,136 +183,137 @@ class ControladorDocumento extends Controller
     }
 
 
-public function edit_clone(Request $request, $id) {
-    if(session()->get('autenticado') == 1) {
+    public function edit_clone(Request $request, $id) {
 
-    $emit  = Empresas_Emitentes::orderBy('cad_emitentes', 'ASC')->get();
-    $dest = Empresas_Destinatarias::orderBy('cad_destinatarias', 'ASC')->get();
-    $ori = Origens::orderBy('cad_origem', 'ASC')->get();
-    $dep = Departamentos::orderBy('cad_departamento', 'ASC')->get();
-    $edit = Cadastro_Documentos::find($id);
-    $tp_documento = TipoDocumento::orderBy('tp_documento', 'ASC')->get();
-    $job = Job::orderBy('nome_job', 'ASC')->get();
+        if(session()->get('autenticado') == 1) {
 
-    $caixa_departamento_Financeiro = DB::table('caixa__departamentos')
-    ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-    ->select('cad_departamento', 'ordem')
-    ->where('cad_departamento', '=', 'ADM-FINANCEIRO')->where('status', '=', 'Aberta')
-    ->get();
+            $emit  = Empresas_Emitentes::orderBy('cad_emitentes', 'ASC')->get();
+            $dest = Empresas_Destinatarias::orderBy('cad_destinatarias', 'ASC')->get();
+            $ori = Origens::orderBy('cad_origem', 'ASC')->get();
+            $dep = Departamentos::orderBy('cad_departamento', 'ASC')->get();
+            $edit = Cadastro_Documentos::find($id);
+            $tp_documento = TipoDocumento::orderBy('tp_documento', 'ASC')->get();
+            $job = Job::orderBy('nome_job', 'ASC')->get();
 
-
-   $caixa_departamento_Diretoria = DB::table('caixa__departamentos')
-   ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-   ->select('cad_departamento', 'ordem')
-   ->where('cad_departamento', '=', 'DIRETORIA')->where('status', '=', 'Aberta')
-   ->get();
+            $caixa_departamento_Financeiro = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'ADM-FINANCEIRO')->where('status', '=', 'Aberta')
+            ->get();
 
 
-   $caixa_departamento_Producao = DB::table('caixa__departamentos')
-   ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-   ->select('cad_departamento', 'ordem')
-   ->where('cad_departamento', '=', 'PRODUÇÃO')->where('status', '=', 'Aberta')
-   ->get();
+            $caixa_departamento_Diretoria = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'DIRETORIA')->where('status', '=', 'Aberta')
+            ->get();
 
 
-   $caixa_departamento_Pos_Producao = DB::table('caixa__departamentos')
-   ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-   ->select('cad_departamento', 'ordem')
-   ->where('cad_departamento', '=', 'PÓS-PRODUÇÃO')->where('status', '=', 'Aberta')
-   ->get();
+            $caixa_departamento_Producao = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'PRODUÇÃO')->where('status', '=', 'Aberta')
+            ->get();
 
 
-   $caixa_departamento_Comercial = DB::table('caixa__departamentos')
-   ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-   ->select('cad_departamento', 'ordem')
-   ->where('cad_departamento', '=', 'COMERCIAL')->where('status', '=', 'Aberta')
-   ->get();
+            $caixa_departamento_Pos_Producao = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'PÓS-PRODUÇÃO')->where('status', '=', 'Aberta')
+            ->get();
 
 
-   $caixa_departamento_Tecnica = DB::table('caixa__departamentos')
-   ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-   ->select('cad_departamento', 'ordem')
-   ->where('cad_departamento', '=', 'TÉCNICA')->where('status', '=', 'Aberta')
-   ->get();
+            $caixa_departamento_Comercial = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'COMERCIAL')->where('status', '=', 'Aberta')
+            ->get();
 
 
-   $caixa_departamento_Copiagem = DB::table('caixa__departamentos')
-   ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-   ->select('cad_departamento', 'ordem')
-   ->where('cad_departamento', '=', 'COPIAGEM')->where('status', '=', 'Aberta')
-   ->get();
+            $caixa_departamento_Tecnica = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'TÉCNICA')->where('status', '=', 'Aberta')
+            ->get();
 
 
-   $caixa_departamento_Edicao = DB::table('caixa__departamentos')
-   ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-   ->select('cad_departamento', 'ordem')
-   ->where('cad_departamento', '=', 'EDIÇÃO')->where('status', '=', 'Aberta')
-   ->get();
+            $caixa_departamento_Copiagem = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'COPIAGEM')->where('status', '=', 'Aberta')
+            ->get();
 
 
-   $caixa_departamento_Mam = DB::table('caixa__departamentos')
-   ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-   ->select('cad_departamento', 'ordem')
-   ->where('cad_departamento', '=', 'MAM')->where('status', '=', 'Aberta')
-   ->get();
+            $caixa_departamento_Edicao = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'EDIÇÃO')->where('status', '=', 'Aberta')
+            ->get();
 
 
-   $caixa_departamento_Nucleo_Conteudo = DB::table('caixa__departamentos')
-   ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-   ->select('cad_departamento', 'ordem')
-   ->where('cad_departamento', '=', 'NÚCLEO-CONTEÚDO')->where('status', '=', 'Aberta')
-   ->get();
+            $caixa_departamento_Mam = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'MAM')->where('status', '=', 'Aberta')
+            ->get();
 
 
-   $caixa_departamento_Campanha_Politica = DB::table('caixa__departamentos')
-   ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-   ->select('cad_departamento', 'ordem')
-   ->where('cad_departamento', '=', 'CAMPANHA-POLÍTICA')->where('status', '=', 'Aberta')
-   ->get();
+            $caixa_departamento_Nucleo_Conteudo = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'NÚCLEO-CONTEÚDO')->where('status', '=', 'Aberta')
+            ->get();
 
 
-    $caixa_departamento_Projetos_Especiais = DB::table('caixa__departamentos')
-    ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-    ->select('cad_departamento', 'ordem')
-    ->where('cad_departamento', '=', 'PROJETOS-ESPECIAIS')->where('status', '=', 'Aberta')
-    ->get();
+            $caixa_departamento_Campanha_Politica = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'CAMPANHA-POLÍTICA')->where('status', '=', 'Aberta')
+            ->get();
 
 
-   $caixa_departamento_Outros = DB::table('caixa__departamentos')
-   ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
-   ->select('cad_departamento', 'ordem')
-   ->where('cad_departamento', '=', 'OUTROS')->where('status', '=', 'Aberta')
-   ->get();
-
-    return view('forms_edit/documentos_clone', compact(
-        'emit',
-        'dest',
-        'ori',
-        'dep',
-        'edit',
-        'tp_documento',
-        'job',
-        'caixa_departamento_Financeiro',
-        'caixa_departamento_Diretoria',
-        'caixa_departamento_Producao',
-        'caixa_departamento_Pos_Producao',
-        'caixa_departamento_Comercial',
-        'caixa_departamento_Tecnica',
-        'caixa_departamento_Copiagem',
-        'caixa_departamento_Edicao',
-        'caixa_departamento_Mam',
-        'caixa_departamento_Nucleo_Conteudo',
-        'caixa_departamento_Campanha_Politica',
-        'caixa_departamento_Projetos_Especiais',
-        'caixa_departamento_Outros'
-
-    ));
+            $caixa_departamento_Projetos_Especiais = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'PROJETOS-ESPECIAIS')->where('status', '=', 'Aberta')
+            ->get();
 
 
-    }
-    else {
-        return redirect(route('index'));
-    }
+            $caixa_departamento_Outros = DB::table('caixa__departamentos')
+            ->join('departamentos', 'departamentos.id_departamento', '=', 'caixa__departamentos.id_departamento')
+            ->select('cad_departamento', 'ordem')
+            ->where('cad_departamento', '=', 'OUTROS')->where('status', '=', 'Aberta')
+            ->get();
+
+            return view('forms_edit/documentos_clone', compact(
+                'emit',
+                'dest',
+                'ori',
+                'dep',
+                'edit',
+                'tp_documento',
+                'job',
+                'caixa_departamento_Financeiro',
+                'caixa_departamento_Diretoria',
+                'caixa_departamento_Producao',
+                'caixa_departamento_Pos_Producao',
+                'caixa_departamento_Comercial',
+                'caixa_departamento_Tecnica',
+                'caixa_departamento_Copiagem',
+                'caixa_departamento_Edicao',
+                'caixa_departamento_Mam',
+                'caixa_departamento_Nucleo_Conteudo',
+                'caixa_departamento_Campanha_Politica',
+                'caixa_departamento_Projetos_Especiais',
+                'caixa_departamento_Outros'
+
+            ));
+
+
+        }
+        else {
+            return redirect(route('index'));
+        }
 
 }
 
@@ -391,7 +393,7 @@ public function edit_clone(Request $request, $id) {
      * @param  \Illuminate\Http\Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateUpdateUpdateRequest $request)
     {
         if(session()->get('autenticado') == 1) {
             $doc = new Cadastro_Documentos();
@@ -405,7 +407,7 @@ public function edit_clone(Request $request, $id) {
             $doc->nome_job = $request->input('nome_job');
             $doc->Nome_Doc = $request->input('Nome_Doc');
             $doc->Valor_Doc = $request->input('Valor_Doc');
-        
+            //dd($doc->Valor_Doc);
             //dd(floatval($doc->Valor_Doc), 2);
 
             // $doc->Valor_Doc = str_replace('.', '', $doc->Valor_Doc); // Remover separador de milhar

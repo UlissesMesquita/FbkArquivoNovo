@@ -15,6 +15,16 @@ Dados do Documento
     {{$message}}
 @enderror
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="container-fluid">
     <form class="form-horizontal" name="form" method="POST" action="{{route('novo_documento')}}" enctype="multipart/form-data">
     @csrf
@@ -35,13 +45,13 @@ Dados do Documento
 
             <div class="col-md-2">
                 <label><b>Data: *</b></label>
-                <label for="data"></label><input type="date" value="{{date("d/m/Y")}}" class="form-control" id="data" name="data" placeholder="" required>
+                <label for="data"></label><input type="date" value="{{date("d/m/Y")}}" class="form-control" id="data" name="data" placeholder="" required value="{{old('data')}}">
             </div>
 
             <div class="col-md-4">
                 <label><b>Empresa Emitente: *</b></label>
                 <label for="Emp_Emit"></label>
-                    <select id="Emp_Emit" name="Emp_Emit" class="form-control" required>
+                    <select id="Emp_Emit" name="Emp_Emit" class="form-control" required value="{{old('Emp_Emit')}}">>
                         <option selected>Escolha...</option>
                             @if(isset($emit))
                                 @foreach($emit as $emitente)
@@ -54,7 +64,7 @@ Dados do Documento
             <div class="col-md-4">
                 <label><b>Empresa Destinatária: *</b></label>
                 <label for="Emp_Dest"></label>
-                    <select id="Emp_Dest" name="Emp_Dest" class="form-control" value="" required>
+                    <select id="Emp_Dest" name="Emp_Dest" class="form-control" value="" required value="{{old('Emp_Dest')}}">>
                         <option selected>Escolha...</option>
                         @if(isset($dest))
                         @foreach($dest as $destinataria)
@@ -72,7 +82,7 @@ Dados do Documento
             <div class="col-md-3">
                 <label><b>Tipo de Documento: *</b></label>
                 <label for="tp_documento"></label>
-                    <select id="tp_documento" name="tp_documento" class="form-control" required>
+                    <select id="tp_documento" name="tp_documento" class="form-control" required value="{{old('tp_documento')}}">>
                         <option selected>Escolha...</option>
                             @foreach($tp_documentos as $tp_documento)
                                 <option value="{{$tp_documento->tp_documento}}">{{$tp_documento->tp_documento}}</option>
@@ -83,17 +93,17 @@ Dados do Documento
 
             <div class="col-md-3">
                 <label><b>Número Documento: *</b></label>
-                <label for="Nome_Doc"></label><input type="text" class="form-control" id="Nome_Doc" name="Nome_Doc" maxlength="20" placeholder="" required onkeyup="maiuscula(this)">
+                <label for="Nome_Doc"></label><input type="text" class="form-control" id="Nome_Doc" name="Nome_Doc" maxlength="20" placeholder="" required onkeyup="maiuscula(this)" value="{{old('Nome_Doc')}}">>
             </div>
 
             <div class="col-md-4">
                 <label><b>Assunto: *</b></label>
-                <label for="Assunto"></label><input type="text" class="form-control" id="Assunto" name="Assunto" placeholder="" required onkeyup="maiuscula(this)">
+                <label for="Assunto"></label><input type="text" class="form-control" id="Assunto" name="Assunto" placeholder="" required onkeyup="maiuscula(this)" value="{{old('Assunto')}}">>
             </div>
 
             <div class="col-md-2">
                 <label><b>Valor: *</b></label>
-                <label for="Valor_Doc"></label><input type="text" class="form-control" id="Valor_Doc" name="Valor_Doc" placeholder="R$" required onKeyPress="return(moeda(this,'.',',',event))">
+                <label for="Valor_Doc"></label><input type="text" value="{{old('Valor_Doc')}}" class="form-control" id="Valor_Doc" name="Valor_Doc" placeholder="R$" required onKeyPress="return(moeda(this,'.',',',event))">
             </div>
                 
         </div>
@@ -104,7 +114,7 @@ Dados do Documento
             <div class="col-md-3">
                 <label><b>Form. do Documento Arquivado: *</b></label>
                 <label for="Formato_Doc"></label>
-                    <select id="Formato_Doc" name="Formato_Doc" class="form-control" required>
+                    <select id="Formato_Doc" name="Formato_Doc" class="form-control" required value="{{old('Formato_Doc')}}">
                         <option selected>Escolha...</option>
                         <option>Original Físico</option>
                         <option>Original Digital</option>
@@ -114,12 +124,12 @@ Dados do Documento
             
             <div class="col-md-2">
                 <label><b>Data Referência: *</b></label>
-                <label for="Dt_Ref"></label><input placeholder= "" class="form-control" type="text" name="Dt_Ref" id="Dt_Ref"  />
+                <label for="Dt_Ref"></label><input placeholder= "" class="form-control" type="text" name="Dt_Ref" id="Dt_Ref" value="{{old('Dt_Ref')}}" />
             </div>
             
             <div class="col-md-4">
                 <label><b>Palavra-Chave: *</b></label>
-                <label for="Palavra_Chave"></label><input type="text" class="form-control" id="Palavra_Chave" name="Palavra_Chave" placeholder="" required onkeyup="maiuscula(this)">
+                <label for="Palavra_Chave"></label><input type="text" value="{{old('Palavra_Chave')}}" class="form-control" id="Palavra_Chave" name="Palavra_Chave" placeholder="" required onkeyup="maiuscula(this)">
             </div>
  
         </div>
@@ -129,14 +139,14 @@ Dados do Documento
 
             <div class="col-md-4">
                 <label><b>Descrição: *</b></label>
-                <label for="Desc"></label><input type="text" class="form-control" id="Desc" name="Desc" placeholder="" required onkeyup="maiuscula(this)">
+                <label for="Desc"></label><input type="text" class="form-control" value="{{old('Desc')}}" id="Desc" name="Desc" placeholder="" required onkeyup="maiuscula(this)">
             </div>
  
 
             <div class="col-md-4">
                 <label><b>Departamento: *</b></label>
                 <label for="Dep"></label>
-                <select name="Dep" id="Dep" class="form-control" required>
+                <select name="Dep" id="Dep" class="form-control" required value="{{old('Dep')}}">
                     <option selected value="Escolha">Escolha</option>
                         @if(isset($dep))
                         
